@@ -1,0 +1,5 @@
+is -> 2
+the -> 2
+are -> 3
+this -> 3
+text -> 6

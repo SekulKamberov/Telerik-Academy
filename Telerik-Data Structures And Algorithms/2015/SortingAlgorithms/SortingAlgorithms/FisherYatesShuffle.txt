@@ -1,0 +1,2 @@
+﻿Runs in linear time O(n)
+The number of elementary steps is ~ n

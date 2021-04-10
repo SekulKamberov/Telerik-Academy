@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.PriorityQueue", "AdvancedDataStructures\01.PriorityQueue.csproj", "{761462B1-7657-4077-83EA-5DFFE7A8F6C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriorityQueueTests", "PriorityQueueTests\PriorityQueueTests.csproj", "{4CC96E28-A6A9-43DB-A1E0-E57C23B87E7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.FindProductsInRange", "02.FindProductsInRange\02.FindProductsInRange.csproj", "{0447065E-F6CB-4A6C-90B0-651A11F8200E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerator", "RandomGenerator\RandomGenerator.csproj", "{201F15B9-5EFE-4808-A8E1-B3A77DD48F4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00.PowerCollections", "00.PowerCollections\00.PowerCollections.csproj", "{29317A95-BF51-4278-A7EC-64D03BABA765}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{865FE060-4558-4768-B6FF-F1CFEA90B5FF}"
+	ProjectSection(SolutionItems) = preProject
+		slides\index.html = slides\index.html
+		slides\open.js = slides\open.js
+		slides\package.json = slides\package.json
+		slides\README.md = slides\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{7398EF15-13C7-46DD-BDE8-2D2AA9C6D594}"
+	ProjectSection(SolutionItems) = preProject
+		slides\imgs\binary-heap.png = slides\imgs\binary-heap.png
+		slides\imgs\c5-classes.png = slides\imgs\c5-classes.png
+		slides\imgs\generic-collections.png = slides\imgs\generic-collections.png
+		slides\imgs\rope.png = slides\imgs\rope.png
+		slides\imgs\suffix-tree.png = slides\imgs\suffix-tree.png
+		slides\imgs\trie.png = slides\imgs\trie.png
+		slides\imgs\untyped-collections.png = slides\imgs\untyped-collections.png
+		slides\imgs\wintelect-power-collections.png = slides\imgs\wintelect-power-collections.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7024CBBD-90FB-4C6C-88AB-35A004591EBF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{761462B1-7657-4077-83EA-5DFFE7A8F6C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761462B1-7657-4077-83EA-5DFFE7A8F6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761462B1-7657-4077-83EA-5DFFE7A8F6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761462B1-7657-4077-83EA-5DFFE7A8F6C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC96E28-A6A9-43DB-A1E0-E57C23B87E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC96E28-A6A9-43DB-A1E0-E57C23B87E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC96E28-A6A9-43DB-A1E0-E57C23B87E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC96E28-A6A9-43DB-A1E0-E57C23B87E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0447065E-F6CB-4A6C-90B0-651A11F8200E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0447065E-F6CB-4A6C-90B0-651A11F8200E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0447065E-F6CB-4A6C-90B0-651A11F8200E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0447065E-F6CB-4A6C-90B0-651A11F8200E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{201F15B9-5EFE-4808-A8E1-B3A77DD48F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201F15B9-5EFE-4808-A8E1-B3A77DD48F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201F15B9-5EFE-4808-A8E1-B3A77DD48F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201F15B9-5EFE-4808-A8E1-B3A77DD48F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29317A95-BF51-4278-A7EC-64D03BABA765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29317A95-BF51-4278-A7EC-64D03BABA765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29317A95-BF51-4278-A7EC-64D03BABA765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29317A95-BF51-4278-A7EC-64D03BABA765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7398EF15-13C7-46DD-BDE8-2D2AA9C6D594} = {865FE060-4558-4768-B6FF-F1CFEA90B5FF}
+	EndGlobalSection
+EndGlobal

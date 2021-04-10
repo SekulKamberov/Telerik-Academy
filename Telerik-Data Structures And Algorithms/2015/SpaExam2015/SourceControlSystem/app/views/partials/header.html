@@ -1,0 +1,15 @@
+﻿<div>
+    <div>
+        <a href="/#/">Home</a>
+        <a href="#/projects">Projects</a>
+        <a href="#/userInfo" ng-show="isLogedIn">{{userLabel}}</a>
+        <form ng-hide="isLogedIn" name="loginForm">
+            <input id="username" type="email" required placeholder="Name" ng-model="user.username" />
+            <input id="password" type="password" ng-pattern="/^[a-zA-Z0-9]{6,100}$/" required placeholder="Password" ng-model="user.password" />
+            <a href="" ng-click="login(user, loginForm)">Login</a>
+            <a href="/#/register">Register</a>
+        </form>
+        <a ng-show="isLogedIn" href="" ng-click="logout()">Logout</a>
+    </div>
+    <hr />
+</div>

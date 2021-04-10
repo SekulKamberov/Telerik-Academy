@@ -1,0 +1,107 @@
+﻿<div ng-if="isLogedIn" ng-controller="ProjectsController">
+    <h1>
+        Projects
+    </h1>
+    <div>
+        <button><a href="#/projects/add">Create</a></button>
+    </div>
+    <br />
+    <br />
+    <div>
+        <label for="sortId">Sort</label>
+        <select id="sortId" ng-model="orderBy">
+            <option value="date">Date</option>
+            <option value="colaborators">Colaborators</option>
+            <option value="name">Name</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label for="orderTypeId">Order</label>
+        <select id="orderTypeId" ng-model="orderType">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+    </div>
+    <br />
+    <!--<div>
+        <label for="license">License</label>
+        <select name="license" id="license" ng-model="license">
+            <option ng-repeat="license in licenses" value="{{license.id}}">{{license.Name}}</option>
+        </select>
+    </div>-->
+    <br />
+    <div>
+        <label for="pageSize">Page Size</label>
+        <input id="pageSize" type="number" ng-model="pageSize" min="1" />
+    </div>
+    <br />
+
+    <div>
+        <label for="filter">Search for</label>
+        <input id="filter" type="text" ng-model="filter" />   
+    </div>
+    <br />
+
+    <div>
+        <label for="byUser">By user</label>
+        <input id="byUser" type="text" ng-model="byUser" />
+    </div>
+    <br />
+    <div>
+        <label for="onlyPublic">Only Public</label>
+        <input id="onlyPublic" type="checkbox" ng-model="onlyPublic" />
+    </div>
+    <br />
+    <div>
+        Filtered pagging
+        <span>
+            <button ng-disabled="page <= 1" ng-click="getProjectsFilteredPaged(page - 1, pageSize, filter, orderBy, orderType, byUser, onlyPublic)">
+                <strong>Previous</strong>
+            </button>
+            <input type="number" min="1" ng-model="page" />
+            <button ng-click="getProjectsFilteredPaged(page, pageSize, filter, orderBy, orderType, byUser, onlyPublic)">
+                <strong>Page {{page}}</strong>
+            </button>
+            <button ng-click="getProjectsFilteredPaged(page + 1, pageSize, filter, orderBy, orderType, byUser, onlyPublic)">
+                <strong>Next</strong>
+            </button>
+        </span>
+        <br /><br />
+        <!--<span>
+            Not filtered pagging (some filters apply on user site)
+            <button ng-disabled="page <= 1" ng-click="getTripsByPageOnly(page - 1)" title="Do not sent filter params, they apply on client side!">
+                <strong>Previous</strong>
+            </button>
+            <input type="number" min="1" ng-model="page" />
+            <button ng-click="getTripsByPageOnly(page)" title="Do not sent filter params, they apply on client side!">
+                <strong>Page {{page}}</strong>
+            </button>
+            <button ng-click="getTripsByPageOnly(page + 1)" title="Do not sent filter params, they apply on client side!">
+                <strong>Next</strong>
+            </button>
+        </span>-->
+    </div>
+    <br />
+    <br />
+    <table ng-show="filteredProjects.length">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>CreatedOn</th>
+                <th>Total Users</th>
+                <th>License</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr project-public-directive project-model="project" index="$index" is-loged="isLogedIn" ng-repeat="project in filteredProjects = (projects | onlyPublicProjectsFilter:onlyPublic)"></tr>
+        </tbody>
+    </table>
+    <div ng-if="!filteredProjects.length">
+        <h2>No Results!</h2>
+    </div>
+</div>
+<div ng-if="!isLogedIn">
+    <div ng-include="projectsPublic"></div>
+</div>

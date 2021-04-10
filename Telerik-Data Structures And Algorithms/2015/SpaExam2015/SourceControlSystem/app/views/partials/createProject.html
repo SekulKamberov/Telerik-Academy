@@ -1,0 +1,23 @@
+﻿<div ng-controller="ProjectsController">
+    <h1 id="message" ng-show="message">{{message}}</h1>
+    <h1 id="error" ng-show="error">{{error}}</h1>
+    <form name="create">
+        <label for="name">Name</label>
+        <input id="name" type="text" required ng-model="project.name" title="name" placeholder="Name of the project" /><br />
+
+        <label for="description">Description</label>
+        <input id="description" type="text" required ng-model="project.description" title="description" placeholder="Description of the project" /><br />
+
+        <label for="license">License</label>
+        <select name="license" id="license" ng-model="project.licenseId">
+            <option ng-repeat="license in licenses" value="{{license.Id}}">{{license.Name}}</option>
+        </select>
+
+        <label for="private">Is private</label>
+        <input id="private" type="checkbox" ng-model="project.private" />
+
+        <br />
+        <button ng-disabled="!create.$valid" ng-click="createProject(project, create)">Create</button>
+        <button><a href="#/projects">Cancel</a></button>
+    </form>
+</div>

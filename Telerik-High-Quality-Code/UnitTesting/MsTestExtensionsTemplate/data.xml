@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Set Properties / Copy to Output / Copy always -->
+<rows>
+  <row>
+    <a>1</a>
+    <b>3</b>
+    <res>4</res>
+  </row>
+  <row>
+    <a>-6</a>
+    <b>3</b>
+    <res>-3</res>
+  </row>
+  <row>
+    <a>0</a>
+    <b>0</b>
+    <res>0</res>
+  </row>
+</rows>

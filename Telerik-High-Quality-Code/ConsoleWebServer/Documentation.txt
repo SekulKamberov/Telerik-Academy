@@ -1,0 +1,79 @@
+Design pattern: Factory Method
+	
+* 
+
+
+
+Design pattern: Strategy
+	
+* ContentActionResult And JsonActionResult construcotors expect "IProtocol protocol" insetead of HttpRequest
+ 
+
+
+Design pattern: Template Method
+	
+* 
+	
+*
+ 
+
+
+Design pattern: Chain of Responsibility
+	
+*
+ 
+
+
+Design pattern: Decorator
+	
+* JsonActionsWith**** could wrapp JsonAction
+ 
+
+
+Found bugs:
+	
+* 
+Missing ';' in Startup class in Main method
+* 
+invalid argument "int a" in main method
+*
+ 
+
+
+Found bottleneck:
+	
+* removed .ToList().AsEnumerable().AsQueryable().ToArray() from Uri split and erase same separators too
+* in Http constructor remove "HHTP/.ToLower()" with "hhtp/"
+* Separated ParserException from HttpNotFound
+
+ 
+
+
+Single responsibility principle
+	
+* Separated Parser Exception from HttpNotFound Exception
+ 
+
+
+Open/closed principle
+	
+*
+ 
+
+
+Liskov substitution principle
+	
+* HttpRequest substitudes IProtocol 
+ 
+
+
+Interface segregation principle
+	
+* introduced "IProtocol" interface
+ 
+
+
+Dependency inversion principle
+	
+* 
+ContentActionResult And JsonActionResult construcotors expect "IProtocol protocol" insetead of HttpRequest

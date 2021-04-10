@@ -1,0 +1,6 @@
+﻿<form ng-hide="isLogedIn" name="loginForm">
+    <input id="username" type="email" required placeholder="Name" ng-model="user.username" />
+    <input id="password" type="password" ng-pattern="/^[a-zA-Z0-9]{6,100}$/" required placeholder="Password" ng-model="user.password" />
+    <a href="" ng-click="login(user, loginForm)">Login</a>
+    <a href="/#/register">Register</a>
+</form>

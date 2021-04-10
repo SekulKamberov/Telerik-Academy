@@ -1,0 +1,15 @@
+﻿<div ng-controller="AuthController">
+    <form name="registration">
+        <label for="name">Email</label>
+        <input id="name" type="email" required placeholder="Email" ng-model="user.name" /><br />
+
+        <label for="pass">Password</label>
+        <input id="pass" type="password" ng-pattern="/^[a-zA-Z0-9]{6,100}$/" required placeholder="Password" ng-model="user.password" /><br />
+
+        <label for="confirm">Confirm Password </label>
+        <input id="confirm" type="password" ng-pattern="/^[a-zA-Z0-9]{6,100}$/" required placeholder="ConfirmPassword" ng-model="user.confirmPassword" /><br />
+
+        <br />
+        <button ng-disabled="registration.$invalid || user.password != user.confirmPassword" ng-click="register(user, registration)">Register</button>
+    </form>
+</div>

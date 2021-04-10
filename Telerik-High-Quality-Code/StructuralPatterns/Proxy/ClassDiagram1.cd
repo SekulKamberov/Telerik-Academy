@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Proxy.Assistant" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assistant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Proxy.MathAssistant" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAIAAAA=</HashCode>
+      <FileName>MathAssistant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Proxy.Student" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAEEAAAAAAEAIIABQQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Student.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Proxy.StudentProxy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAAIICBQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StudentProxy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Proxy.StudentRepresentative" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAABQAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StudentRepresentative.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Proxy.IStudent" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAAIIABQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IStudent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Proxy.StudentStatus" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAAAAQAAIAAAAAAAAAAAAAAAAAAAAAAAAABAIAAA=</HashCode>
+      <FileName>StudentStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

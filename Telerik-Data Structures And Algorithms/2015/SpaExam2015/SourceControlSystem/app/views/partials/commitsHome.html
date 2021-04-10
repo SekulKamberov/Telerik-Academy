@@ -1,0 +1,23 @@
+﻿<div>
+    <h1>
+        Latest commits
+    </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Created On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="commit in latestCommits">
+                <td>
+                    <a href="#/commits/{{commit.Id}}">{{commit.UserName}}</a>
+                </td>
+                <td>
+                    {{commit.CreatedOn}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,4 @@
+﻿find(Pesho)
+find(Pesho, Var)
+find(Pe)
+find(Pe, Pl)

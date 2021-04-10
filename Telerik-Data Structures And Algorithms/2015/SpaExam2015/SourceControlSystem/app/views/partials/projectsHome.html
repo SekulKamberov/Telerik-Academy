@@ -1,0 +1,36 @@
+﻿<div>
+    <h1>
+        Latest projects
+    </h1>
+    <label for="projectSortId">Order by: </label>
+    <select id="projectSortId" ng-model="orderProjectBy">
+        <option value="Id">Id ASC</option>
+        <option value="-Id">Id DESC</option>
+        <option value="Name">Name ASC</option>
+        <option value="-Name">Name DESC</option>
+        <option value="CreatedOn">CreatedOn ASC</option>
+        <option value="-CreatedOn" selected="selected">CreatedOn DESC</option>
+        <option value="TotalUsers">TotalUsers ASC</option>
+        <option value="-TotalUsers">TotalUsers DESC</option>
+        <option value="License">License ASC</option>
+        <option value="-License">License DESC</option>
+    </select>
+    <label for="limitProjectsId">Limit to: </label>
+    <input id="limitProjectsId" type="number" min="0" max="10" value="10" ng-model="limitProjectTo" />
+    <label for="substringId">Search for</label>
+    <input id="substringId" type="text" ng-model="substring" />
+    <table>
+        <thead>
+            <tr>
+                <th>Index<th>
+                <th>Name</th>
+                <th>CreatedOn</th>
+                <th>Total Users</th>
+                <th>License</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr project-public-directive project-model="project" index="$index" ng-repeat="project in latestProjects | orderBy:orderProjectBy | limitTo:limitProjectTo | filter:substring"></tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AbstractFactory.Alcohol" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACAAAAAAEAAAAAAQAAAgAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Alcohol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.AlcoholFactory" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAACAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>AlcoholFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.Beer" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Beer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.GarageInc" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAQAAAACAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>GarageInc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.NightClub" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAABAAAAAAAAEAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>NightClub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.Program" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.Rakia" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Rakia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.Vinprom" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAQAAAACAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Vinprom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractFactory.Vodka" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Vodka.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AbstractFactory.Flavor" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAEAAAEABAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Flavor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

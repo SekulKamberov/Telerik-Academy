@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D49FE09-0498-44F4-9129-414EE62F72EB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SourceControlSystem</RootNamespace>
+    <AssemblyName>SourceControlSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\controllers\AuthController.js" />
+    <Content Include="app\controllers\CommitsController.js" />
+    <Content Include="app\controllers\ErrorsController.js" />
+    <Content Include="app\controllers\InfoController.js" />
+    <Content Include="app\controllers\MainController.js" />
+    <Content Include="app\controllers\ProjectsController.js" />
+    <Content Include="app\directives\datePickerDirective.js" />
+    <Content Include="app\directives\tripDirective.js" />
+    <Content Include="app\directives\projectPublicDirective.js" />
+    <Content Include="app\filters\isTripFinishedFilter.js" />
+    <Content Include="app\filters\onlyDriverTripsFilter.js" />
+    <Content Include="app\filters\onlyPublicProjectsFilter.js" />
+    <Content Include="app\filters\takeNameFromMailFilter.js" />
+    <Content Include="app\services\authService.js" />
+    <Content Include="app\services\commitsService.js" />
+    <Content Include="app\services\cookiesService.js" />
+    <Content Include="app\services\sha1Service.js" />
+    <Content Include="app\services\statsService.js" />
+    <Content Include="app\services\projectsService.js" />
+    <Content Include="app\views\directives\datePickerDirective.html" />
+    <Content Include="app\views\directives\projectPublicDirective.html" />
+    <Content Include="app\views\partials\addCommit.html" />
+    <Content Include="app\views\partials\createProject.html" />
+    <Content Include="app\views\partials\commitsHome.html" />
+    <Content Include="app\views\partials\error.html" />
+    <Content Include="app\views\partials\footer.html" />
+    <Content Include="app\views\partials\header.html" />
+    <Content Include="app\views\partials\home.html" />
+    <Content Include="app\views\partials\login.html" />
+    <Content Include="app\views\partials\overallStatistic.html" />
+    <Content Include="app\views\partials\private.html" />
+    <Content Include="app\views\partials\commitDetails.html" />
+    <Content Include="app\views\partials\register.html" />
+    <Content Include="app\views\partials\projectDetails.html" />
+    <Content Include="app\views\partials\projects.html" />
+    <Content Include="app\views\partials\projectsHome.html" />
+    <Content Include="app\views\partials\unauthorized.html" />
+    <Content Include="app\views\partials\userInfo.html" />
+    <Content Include="content\app.css" />
+    <Content Include="content\img\favicon.ico" />
+    <Content Include="content\loading-bar.css" />
+    <Content Include="content\loading-bar.min.css" />
+    <Content Include="index.html" />
+    <Content Include="libs\angular-cookies.js" />
+    <Content Include="libs\angular-cookies.min.js" />
+    <Content Include="libs\angular-resource.js" />
+    <Content Include="libs\angular-resource.min.js" />
+    <Content Include="libs\angular-route.js" />
+    <Content Include="libs\angular-route.min.js" />
+    <Content Include="libs\angular-sanitize.js" />
+    <Content Include="libs\angular-sanitize.min.js" />
+    <Content Include="libs\angular.js" />
+    <Content Include="libs\angular.min.js" />
+    <Content Include="libs\jquery.min.js" />
+    <Content Include="libs\loading-bar.js" />
+    <Content Include="libs\loading-bar.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\angular-cookies.min.js.map" />
+    <Content Include="libs\angular-resource.min.js.map" />
+    <Content Include="libs\angular-route.min.js.map" />
+    <Content Include="libs\angular-sanitize.min.js.map" />
+    <Content Include="libs\angular.min.js.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>22104</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:22104/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,13 @@
+﻿Kiril  | Ivanov   | C#
+Kalin  | Ivanov   | C#
+Stefka | Nikolova | SQL
+Ivan   | Grigorov | C#
+Stefo  | Nikolova | SQL
+Stela  | Mineva   | Java
+Boyan  | Grigorov | C#
+Ivan   | Mineva   | Java
+Milena | Petrova  | C#
+Anelia | Retrova  | C#
+Boris  | Grigorov | C#
+Ivan   | Kolev    | SQL
+Ivanka | Kolev    | SQL

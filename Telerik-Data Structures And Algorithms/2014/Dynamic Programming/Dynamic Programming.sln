@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubsetSum", "Dynamic Programming\SubsetSum.csproj", "{DFD48AED-2156-428C-8E4D-DDEFD0A7903F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.HW", "01.HW\01.HW.csproj", "{03C5EE61-796B-453D-B1EB-5678B332E53C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.MyHW", "01.MyHW\01.MyHW.csproj", "{FFF03FFD-182A-4DA5-B6AE-58A43D1BD330}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.HW", "02.HW\02.HW.csproj", "{9CDD0F2C-3651-444B-974E-38A3024F49CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongestCommonSequence2D", "LongestCommonSequence2D\LongestCommonSequence2D.csproj", "{DB401614-AF96-4E2B-B578-D8854478E7A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongestCommonSequence3D", "LongestCommonSequence3D\LongestCommonSequence3D.csproj", "{74419C90-2D83-4D48-853E-579F723EFA27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoovingProblem", "MoovingProblem\MoovingProblem.csproj", "{A0FE7D13-37CF-4A74-A935-C5545412F4D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFD48AED-2156-428C-8E4D-DDEFD0A7903F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD48AED-2156-428C-8E4D-DDEFD0A7903F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD48AED-2156-428C-8E4D-DDEFD0A7903F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD48AED-2156-428C-8E4D-DDEFD0A7903F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C5EE61-796B-453D-B1EB-5678B332E53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C5EE61-796B-453D-B1EB-5678B332E53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C5EE61-796B-453D-B1EB-5678B332E53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C5EE61-796B-453D-B1EB-5678B332E53C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF03FFD-182A-4DA5-B6AE-58A43D1BD330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF03FFD-182A-4DA5-B6AE-58A43D1BD330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF03FFD-182A-4DA5-B6AE-58A43D1BD330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF03FFD-182A-4DA5-B6AE-58A43D1BD330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDD0F2C-3651-444B-974E-38A3024F49CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDD0F2C-3651-444B-974E-38A3024F49CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDD0F2C-3651-444B-974E-38A3024F49CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDD0F2C-3651-444B-974E-38A3024F49CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB401614-AF96-4E2B-B578-D8854478E7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB401614-AF96-4E2B-B578-D8854478E7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB401614-AF96-4E2B-B578-D8854478E7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB401614-AF96-4E2B-B578-D8854478E7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74419C90-2D83-4D48-853E-579F723EFA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74419C90-2D83-4D48-853E-579F723EFA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74419C90-2D83-4D48-853E-579F723EFA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74419C90-2D83-4D48-853E-579F723EFA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0FE7D13-37CF-4A74-A935-C5545412F4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0FE7D13-37CF-4A74-A935-C5545412F4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0FE7D13-37CF-4A74-A935-C5545412F4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0FE7D13-37CF-4A74-A935-C5545412F4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+﻿<div ng-controller="CommitsController">
+    <form name="commitForm">
+        <input id="id" type="hidden" required ng-model="projectId" /><br />
+
+        <label for="sourceCode">SourceCode</label>
+        <input id="sourceCode" type="text" required placeholder="Source Code :)" ng-model="sourceCode" /><br />
+
+        <br />
+        <button ng-disabled="commit.$invalid" ng-click="commit(projectId, sourceCode, commitForm)">Commit</button>
+    </form>
+</div>

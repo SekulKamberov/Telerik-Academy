@@ -1,0 +1,88 @@
+﻿<div ng-controller="ProjectsController">
+    <h1>Project Details</h1>
+    <div>
+        <a href="#/projects/{{projectDetails.Id}}/addcommits">Add commit</a>
+    </div>
+    <div>
+        Id: {{projectDetails.Id}}
+    </div>
+    <div>
+        Name: {{projectDetails.Name}}
+    </div>
+    <div>
+        Created On: {{projectDetails.CreatedOn}}
+    </div>
+    <div>
+        Total users: {{projectDetails.TotalUsers}}
+    </div>
+    <div>
+        License: {{projectDetails.License}}
+    </div>
+    <hr />
+    <div>
+        Çolaborators: 
+        <span ng-repeat="colaborator in projectColaborators">{{colaborator}} </span>
+    </div>
+    <h1>
+        Add colaborator
+    </h1>
+    <form name="addColaboratorForm">
+        <label for="name">Colaborator Email</label>
+        <input id="name" type="email" required placeholder="Email" ng-model="colaborator" /><br />
+        <br />
+        <button ng-disabled="addColaboratorForm.$invalid" ng-click="addColaborator(colaborator, projectDetails.Id, addColaboratorForm)">Add Colaborator</button>
+    </form>
+
+    <hr />
+
+    <h1>
+        Commits
+    </h1>
+    <div>
+        <label for="pageSize">Page Size</label>
+        <input id="pageSize" type="number" ng-model="commitPageSize" min="1" />
+    </div>
+    <br />
+
+    <div>
+        <label for="byUser">By user</label>
+        <input id="byUser" type="text" ng-model="commitUser" />
+    </div>
+    <br />
+    <div>
+        Filter commits
+        <span>
+            <button ng-disabled="commitPage <= 1" ng-click="getCommits(commitPage - 1, commitPageSize, commitUser, projectDetails.Id)">
+                <strong>Previous Commits</strong>
+            </button>
+            <input type="number" min="1" ng-model="commitPage" />
+            <button ng-click="getCommits(commitPage, commitPageSize, commitUser, projectDetails.Id)">
+                <strong>Page {{commitPage}}</strong>
+            </button>
+            <button ng-click="getCommits(commitPage + 1, commitPageSize, commitUser, projectDetails.Id)">
+                <strong>Next Commits</strong>
+            </button>
+        </span>
+        <br /><br />
+    </div>
+    <br />
+    <br />
+    <table ng-show="projectCommits.length">
+        <thead>
+            <tr>
+                <th>Commit UserName</th>
+                <th>Commit CreatedOn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="commit in projectCommits">
+                <td>{{commit.UserName}}</td>
+                <td>{{commit.CreatedOn}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-if="!projectCommits.length">
+        <h2>No Commits!</h2>
+    </div>
+</div>
+
