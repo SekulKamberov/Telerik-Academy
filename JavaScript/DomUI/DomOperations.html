@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DOM Operations</title>
+</head>
+<body>
+    <ul>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+        <li>Fifth</li>
+    </ul>
+    <script>
+        var firstLi = document.getElementsByTagName('li')[0];
+        firstLi.style.color = 'red';
+        //console.log(firstLi.parentNode.getElementsByTagName('li'));
+        console.log(firstLi.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling);
+        
+        var ul = document.getElementsByTagName('ul')[0];
+        console.log(ul.firstElementChild);
+        console.log(ul.lastElementChild);
+
+        console.log('===== Insert Before ======');
+        var newLi = document.createElement('li');
+        newLi.innerText = 'Zero';
+        firstLi.parentNode.insertBefore(newLi, firstLi);
+
+        console.log('===== Delete Before ======');
+        ul.removeChild(ul.lastElementChild);
+
+        console.log('===== Document Fragment ======');
+        var dFrar = document.createDocumentFragment();
+
+        for (var i = 0; i < 10; i++) {
+            var li = document.createElement('li');
+            li.innerHTML = "Text " + i;
+            dFrar.appendChild(li);
+        }
+
+        ul.appendChild(dFrar);
+
+        console.log('===== Clone ======');
+        var dFrar = document.createDocumentFragment();
+        var li = document.createElement('li');
+        li.style.color = 'red';
+
+        for (var i = 0; i < 10; i++) {
+            var clonedLi = li.cloneNode(true);
+            clonedLi.innerHTML = "Text " + i;
+            dFrar.appendChild(clonedLi);
+        }
+
+        ul.appendChild(dFrar);
+    </script>
+</body>
+</html>

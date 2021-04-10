@@ -1,0 +1,23 @@
+﻿<div ng-controller="TripsController">
+    <h1>Trip Details</h1>
+    <h2>
+        <a href="#/drivers/{{tripDetails.driverId}}">{{tripDetails.driverName}}</a> - {{tripDetails.departureDate}}</h2>
+    <div ng-hide="tripDetails.isMine || tripDetails.numberOfFreeSeats == 0">
+        <button ng-click="joinTrip(tripDetails.id)">Join</button>
+    </div>
+    <div>
+        From: {{tripDetails.from}}
+    </div>
+    <div>
+        To: {{tripDetails.to}}
+    </div>
+    <div>
+        Number of free seats: {{tripDetails.numberOfFreeSeats}}
+    </div>
+    <div>
+        Passengers:
+        <span ng-repeat="passenger in tripDetails.passengers">
+            <span>{{passenger}},</span>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SVG</title>
+    <link href="svgCSS.css" rel="stylesheet" />
+</head>
+<body>
+    <svg width="800" height="400">
+        <rect id="rect1" x="10" y="10" width="50" height="50" fill="red"/>
+        <rect id="rect2" x="120" y="10" width="50" height="50" fill="green" />
+        <rect id="rect3" x="65" y="10" width="50" height="50" fill="red"/>
+        <rect id="rect4" x="175" y="10" width="50" height="50" fill="green" />
+        <rect id="rect5" x="10" y="65" width="50" height="50" fill="red" />
+        <rect id="rect6" x="120" y="65" width="50" height="50" fill="green" />
+        <rect id="rect7" x="65" y="65" width="50" height="50" fill="red" />
+        <rect id="rect8" x="175" y="65" width="50" height="50" fill="green" />
+        <path id="sofiq" d="m200 200 l 20 0 l 0 20 l -20 0 z" fill="white" stroke="green"/>
+        <path id="plovdiv" d="m225 200 l 20 0 l 0 20 l -20 0 z" fill="white" stroke="green" />
+    </svg>
+
+    <script>
+        var figure1 = document.querySelector('#rect1');
+        var figure2 = document.querySelector('#rect2');
+        var figure3 = document.querySelector('#rect3');
+        var figure4 = document.querySelector('#rect4');
+        var figure5 = document.querySelector('#rect5');
+        var figure6 = document.querySelector('#rect6');
+        var figure7 = document.querySelector('#rect7');
+        var figure8 = document.querySelector('#rect8');
+
+        figure1.addEventListener('click', function () {
+            if (figure1.getAttribute('fill') === 'red') {
+                figure1.setAttribute('fill', 'green');
+                figure2.setAttribute('fill', 'red');
+            } else {
+                figure1.setAttribute('fill', 'red');
+                figure2.setAttribute('fill', 'green');
+            }
+        });
+
+        figure2.addEventListener('click', function () {
+            if (figure1.getAttribute('fill') === 'red') {
+                figure1.setAttribute('fill', 'green');
+                figure2.setAttribute('fill', 'red');
+            } else {
+                figure1.setAttribute('fill', 'red');
+                figure2.setAttribute('fill', 'green');
+            }
+        });
+
+        figure3.addEventListener('click', function () {
+            if (figure3.getAttribute('fill') === 'red') {
+                figure3.setAttribute('fill', 'green');
+                figure4.setAttribute('fill', 'red');
+            } else {
+                figure3.setAttribute('fill', 'red');
+                figure4.setAttribute('fill', 'green');
+            }
+        });
+
+        figure4.addEventListener('click', function () {
+            if (figure3.getAttribute('fill') === 'red') {
+                figure3.setAttribute('fill', 'green');
+                figure4.setAttribute('fill', 'red');
+            } else {
+                figure3.setAttribute('fill', 'red');
+                figure4.setAttribute('fill', 'green');
+            }
+        });
+
+        figure5.addEventListener('click', function () {
+            if (figure5.getAttribute('fill') === 'red') {
+                figure5.setAttribute('fill', 'green');
+                figure6.setAttribute('fill', 'red');
+            } else {
+                figure5.setAttribute('fill', 'red');
+                figure6.setAttribute('fill', 'green');
+            }
+        });
+
+        figure6.addEventListener('click', function () {
+            if (figure5.getAttribute('fill') === 'red') {
+                figure5.setAttribute('fill', 'green');
+                figure6.setAttribute('fill', 'red');
+            } else {
+                figure5.setAttribute('fill', 'red');
+                figure6.setAttribute('fill', 'green');
+            }
+        });
+
+        figure7.addEventListener('click', function () {
+            if (figure7.getAttribute('fill') === 'red') {
+                figure7.setAttribute('fill', 'green');
+                figure8.setAttribute('fill', 'red');
+            } else {
+                figure7.setAttribute('fill', 'red');
+                figure8.setAttribute('fill', 'green');
+            }
+        });
+
+        figure8.addEventListener('click', function () {
+            if (figure7.getAttribute('fill') === 'red') {
+                figure7.setAttribute('fill', 'green');
+                figure8.setAttribute('fill', 'red');
+            } else {
+                figure7.setAttribute('fill', 'red');
+                figure8.setAttribute('fill', 'green');
+            }
+        });
+    </script>
+</body>
+</html>

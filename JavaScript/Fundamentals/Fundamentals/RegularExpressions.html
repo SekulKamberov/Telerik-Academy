@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .link {
+            color: red;
+        }
+
+            .link:hover {
+                background-color: #ffd800;
+            }
+
+        table, td, th {
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div id="link"></div>
+    <div id="handlebars"></div>
+    <script>
+        var text = 'This Text TexXXXXT is ,dwdwd dwdw.awd!wd dwwd?d23 wdwd:dwdw;dw aw32 d\'dw ad"dw some text, texXt texXt This this-in which we will this search strings using regex expressions!',
+            username = 'kostov',
+            password = 'kostov123',
+            words;
+        console.log(text);
+        words = text.split(/[\s\-\t,.:;?!'"0-9A-Z]+/);
+        console.log(words);
+
+        var startWith = /^Thi/,
+            endWith = /sions!$/,
+            caseInsensitive = /this/ig,
+            startsWithPattern = new RegExp('^' + 'This'), // create pattern dinamic
+            splitPattern = /[ ,\-.!]/, // escape '-' => '\-'
+            apearPattern = /texX*t/ig, // X* appears 0, 1 or many times
+            plusPattern = /texX+/g, // X+ appears atleast 1 time
+            questionPattern = /texX?t/g, // X? appears 1 time or not
+            dotPattern = /./g,
+            orPattern = /Te?|me/g, // start 'Te' or end 'me'
+            numbersPattern = /[0-9]/g,
+            cappitalPattern = /[A-Z]/g,
+            smallPattern = /[a-z]/g,
+            lettersPattern = /[A-z]/g,
+            numbersAndLettersPattern = /[0-z]/g,
+            numbersAndCappitalsPattern = /[0-Z]/g,
+            numbersAndCappitalsPattern2 = /[0-9A-Z]/g,
+            withoutPattern = /[^a-z]/g, // without
+            lengthPatternd = /[a-z]{5,7}/g, // length
+            minLenPatternd = /[a-z]{5,}/g, // min length
+            replace = /(\w+) (\w+)/g,
+            passwordDoesNotContainUsername = new RegExp('^((?!(' + username + ')).)*$', 'gi');
+        console.log('Starts with: /^Thi/.test(text)');
+        console.log(startWith.test(text));
+        console.log('');
+
+        console.log('Ends with: ' + endWith + '.test(text)');
+        console.log(endWith.test(text));
+        console.log('');
+
+        console.log('Does Not Contain: ' + passwordDoesNotContainUsername + '.test(' + password + ')');
+        console.log(passwordDoesNotContainUsername.test(password));
+        console.log('');
+
+        console.log("startsWithPattern = new RegExp('^' + 'This')");
+        console.log(startsWithPattern + '.test(text)');
+        console.log(startsWithPattern.test(text));
+        console.log('');
+
+        console.log('Case insensitive match: text.match(/this/ig)');
+        console.log(text.match(caseInsensitive));
+        console.log('');
+
+        console.log('text.match(' + startsWithPattern + ')');
+        console.log(text.match(startsWithPattern));
+        console.log('');
+
+        console.log('text.match(/this/g)');
+        console.log(text.match(/this/g));
+        console.log('');
+
+        console.log("text.replace(/this/ig, 'THAT')");
+        console.log(text.replace(/this/ig, 'THAT'));
+        console.log('');
+
+        console.log("text.replace(" + caseInsensitive + ", 'THAT')");
+        console.log(text.replace(caseInsensitive, 'THAT'));
+        console.log('');
+
+        console.log('text.split(/[ ,\-.!]/).filter(function (word) {return !!word; }');
+        console.log(text.split(splitPattern)
+            .filter(function (word) {
+                return !!word; // filter ''
+            }));
+        console.log('');
+
+        console.log(text);
+        console.log('text.search(/this/g)');
+        console.log(text.search(/this/g));
+        console.log('');
+
+        console.log('text.search(' + caseInsensitive + ')');
+        console.log(text.search(caseInsensitive));
+        console.log('');
+
+        console.log('*');
+        console.log('text.match(' + apearPattern + ')');
+        console.log(text.match(apearPattern));
+        console.log('');
+
+        console.log('+');
+        console.log('text.match(' + plusPattern + ')');
+        console.log(text.match(plusPattern));
+        console.log('');
+
+        console.log('?');
+        console.log('text.match(' + questionPattern + ')');
+        console.log(text.match(questionPattern));
+        console.log('');
+
+        console.log('.');
+        console.log('text.match(' + dotPattern + ')');
+        console.log(text.match(dotPattern));
+        console.log('');
+
+        console.log('|');
+        console.log('text.match(' + orPattern + ')');
+        console.log(text.match(orPattern));
+        console.log('');
+
+        console.log('without');
+        console.log('text.match(' + withoutPattern + ')');
+        console.log(text.match(withoutPattern));
+        console.log('');
+
+        console.log('length');
+        console.log('text.match(' + lengthPatternd + ')');
+        console.log(text.match(lengthPatternd));
+        console.log('');
+
+        console.log('minLength');
+        console.log('text.match(' + minLenPatternd + ')');
+        console.log(text.match(minLenPatternd));
+        console.log('');
+
+        console.log('replace');
+        console.log('text.replace(' + replace + ', "$2 $1")');
+        console.log(text.replace(replace, '$2 $1'));
+        console.log('');
+
+        var reg = /(\w+) (\w+)/g;
+        var text = 'Telerik Academy';
+        console.log('text.replace(' + reg + ', "$2 $1")');
+        console.log(text.replace(reg, '$2 $1'));
+        console.log('');
+
+        console.log('==========1==========');
+
+
+        //if (!(String.prototype.format)) {
+        //    String.prototype.format = function (options) {
+        //        var option,
+        //            regex,
+        //            regexExpression;
+
+        //        var text = this.toString();
+
+        //        for (option in options) {
+        //            regexString = '#{' + option + '}';
+        //            regexExpression = new RegExp(regexString, 'g');
+        //            console.log(regexExpression);
+        //            var obj = options[option];
+        //            if (obj instanceof Object) {
+        //                text = text.format(obj);
+        //            } else {
+        //                console.log(options[option]);
+        //            }
+        //            text = text.replace(regexExpression, options[option]);
+        //        }
+
+        //        return text;
+        //    };
+        //}
+
+        //var stringToFormat = 'Hello, #{firstName}! Are you #{firstName}? Is your last name #{lastName} and your full name #{firstName} #{lastName}. Age #{age}?! Is your address #{city} #{street} N# #{number}',
+        //    information = {
+        //        firstName: 'Svetlin',
+        //        lastName: 'Nakov',
+        //        age: '55',
+        //        address: {
+        //            city: 'Sofia',
+        //            street: 'Dondukov',
+        //            number: '666',
+        //        }
+        //    };
+
+        //console.log(stringToFormat.format(information));
+        //console.log(stringToFormat);
+        //console.log();
+
+        if (!(String.prototype.format)) {
+            String.prototype.format = function (options) {
+                var option,
+                    regex,
+                    regexExpression,
+                    leading = arguments[1] || '',
+                    text = this.toString(),
+                    tableRow;
+
+                for (option in options) {
+                    regexString = '#{' + leading + option + '}';
+                    regexExpression = new RegExp(regexString, 'g');
+                    var obj = options[option];
+                    if (obj instanceof Object) {
+                        if (obj instanceof Array) {
+                            tableRow = '';
+                            for (var index in obj) {
+                                tableRow += '<td>' + obj[index] + '</td>';
+                            }
+
+                            text = text.replace(regexExpression, tableRow);
+                        } else {
+                            text = text.format(obj, leading + option + '.');
+                            text = text.replace(regexExpression, options[option]);
+                        }
+                    } else {
+                        text = text.replace(regexExpression, options[option]);
+                    }
+
+                }
+
+                return text;
+            };
+        }
+
+        var stringToFormat = '<hr><h2>Hello, <strong>#{name.firstName}!</strong></h2>'
+            + '<p>Is your last name <strong>#{name.lastName}</strong> and your full name <strong>#{name.firstName} #{name.lastName}</strong>.\n'
+             + 'According to FBI your age is <strong>#{age}</strong>?!</p>'
+              + '<p>Your address is: <strong>#{address.city} #{address.street} N# #{address.number}</strong>\n'
+               + 'You are student in: <strong>#{univesityInfo.name}</strong> which is located in <strong>#{univesityInfo.address.city}, #{univesityInfo.address.street} ##{univesityInfo.address.number}</strong></p>'
+                + '<hr>Courses<hr>'
+                 + '<table><tr>'
+                  + '<th>Names</th>'
+                   + '#{univesityInfo.courses.names}'
+                  + '</tr><tr>'
+                   + '<th>Grades</th>'
+                    + '#{univesityInfo.courses.grades}'
+                  + '</tr></table><hr>',
+            nakovData = {
+                name:
+                    {
+                        firstName: 'Svetlin',
+                        lastName: 'Nakov',
+                    },
+                age: '55',
+                address: {
+                    city: 'Sofia',
+                    street: 'Dondukov',
+                    number: '666',
+                },
+                univesityInfo:
+                    {
+                        name: 'Telerik Software Academy',
+                        address: {
+                            city: 'Sofia',
+                            street: 'bul.Malinov',
+                            number: '999',
+                        },
+                        courses: {
+                            names: ['OOP', 'Java', 'CSS', 'HTML'],
+                            grades: [2, 5, 6, 2],
+                        }
+                    },
+            },
+            kostovData = {
+                name:
+                    {
+                        firstName: 'Nikolay',
+                        lastName: 'Kostov',
+                    },
+                age: '45',
+                address: {
+                    city: 'Sofia',
+                    street: 'Makedonia',
+                    number: '333',
+                },
+                univesityInfo:
+                    {
+                        name: 'University of Sofia',
+                        address: {
+                            city: 'Sofia',
+                            street: 'bul.Sofiiski',
+                            number: '444',
+                        },
+                        courses: {
+                            names: ['Databases', 'UnitTesting', '.NET', '.Chalga skills'],
+                            grades: [3, 4, 3, 4],
+                        },
+                    },
+            };
+
+        console.log(stringToFormat);
+        var text = stringToFormat.format(nakovData);
+        console.log(text);
+        document.getElementById('handlebars').innerHTML = text;
+        text = stringToFormat.format(kostovData);
+        document.getElementById('handlebars').innerHTML += text;
+        console.log('==========2==========');
+        String.prototype.bind = function (values) {
+            var div = document.createElement('div'),
+                element,
+                i,
+                len,
+                attribute;
+            div.innerHTML = this;
+            element = div.firstChild;
+
+            for (i = 0, len = element.attributes.length; i < len; i += 1) {
+                attribute = element.attributes[i];
+
+                switch (attribute.name) {
+                    case 'data-bind-content':
+                        element.innerText = values[attribute.value];
+                        break;
+                    case 'data-bind-href':
+                        element.setAttribute('href', values[attribute.value]);
+                        break;
+                    case 'data-bind-class':
+                        element.setAttribute('class', values[attribute.value]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return element;
+
+        }
+
+        var str = '<a data-bind-content="name" data-bind-href="link" data-bind-class="class"></а>',
+            data = { name: 'google', link: 'http://google.com', 'class': 'link' },
+            link = str.bind(data),
+            div = document.getElementById('link');
+        div.appendChild(link);
+        console.log(link);
+    </script>
+</body>
+</html>

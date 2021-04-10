@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery</title>
+    <script src="jquery-2.1.4.js"></script>
+    <script src="scrolling.js"></script>
+    <style>
+        .active {
+            color: #ff0000;
+        }
+
+        .scroll {
+            background-color: darkmagenta;
+        }
+
+        .block {
+            position: relative;
+            background-color: #abc;
+            left: 10px;
+            width: 120px;
+            height: 20px;
+            margin: 10px;
+        }
+
+        .colored {
+            background-color: lawngreen;
+        }
+
+        #loading {
+            display: none;
+        }
+
+        .oldLiClass {
+            background: #afa;
+        }
+
+        .newLiClass {
+            background: #ffffff;
+            font-size: 1.4em;
+        }
+
+        .liBorder {
+            border-right: 2px solid black;
+        }
+
+        .li0 {
+            color: darkseagreen;
+        }
+
+        .li1 {
+            color: seagreen;
+        }
+
+        .li2 {
+            color: green;
+        }
+
+        .li3 {
+            color: lawngreen;
+        }
+
+        .li4 {
+            color: lightgreen;
+        }
+
+        .currentSpan {
+            background: #f99;
+        }
+    </style>
+</head>
+<body>
+    <!--ol#secondOl>li[id=id$ class=cl$$]*5-->
+    <!--ol#ul$.cl$>li#a$.b$$*4-->
+    <!--ol>li[id=id$ class=cl$$]*5>{Text $$}-->
+    <!--div#main.red{DIV}-->
+    <!--ul>li*5>lorem2-->
+
+    <div id="addBack">
+        Amet, consectetur adipiscing elit.
+        <ul id="firstUl">
+            <li id="li" class="oldLiClass">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        Sit amet, consectetur.
+    </div>
+
+    <hr />
+    <ol id="firstOl">
+        <li>1.1</li>
+        <li>2.1</li>
+        <li>3.1</li>
+        <li>4.1</li>
+        <li>5.1</li>
+    </ol>
+
+    <span id="sp1" class="span">Span 1</span>
+    <span id="sp2" class="span">Span 2</span>
+    <span id="sp3" class="span">Span 3</span>
+    <span id="sp4" class="span">Span 4</span>
+    <span id="sp5" class="span">Span 5</span>
+
+    <span id="1">Span 6</span>
+    <div id="point">
+        Div
+        <span id="2">Span 7 inside DIV</span>
+    </div>
+    <span id="3">Span 8</span>
+    <hr />
+    <div class="after">
+        First Div after()
+        <h5 class="h5after">H5</h5>
+        <h5 class="h5after">H5</h5>
+        <h4 class="h4after">H4</h4>
+        <h3 class="h3after">H3</h3>
+        <h6 class="h6after">H6</h6>
+        <div class="inner">Hello</div>
+        <div class="inner">Goodbye</div>
+    </div>
+    <div class="after">
+        Second Div after()
+    </div>
+    <hr />
+    <div id="loading">Loading</div>
+    <button id="triggerAjax">Trigger</button>
+    <div id="resultAjax">Result</div>
+    <div id="logAjax">Log</div>
+    <div id="errorLoad">Error Load</div>
+    <div id="callbackAjax">Callback</div>
+    <div id="errorAjax">Error</div>
+    <div id="successAjax">Success</div>
+    <div id="sendAjax">Send</div>
+    <hr />
+    <div>Count elements inside first div: <span id="elementsCount"></span></div>
+    <hr />
+    <button id="left">&laquo;</button>
+    <button id="right">&raquo;</button>
+    <div class="block">Animation block</div>
+    <hr />
+    <div id="delegate">
+        <p>Delegate</p>
+    </div>
+    <hr />
+
+    <div class="test">ON 'CLICK MOUSEOVER MOUSEOUT'</div>
+
+    <hr />
+    <div id="spanParent">
+        <span id="start">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span id="end">8</span>
+    </div>
+    <button id="prevLast">Go to Prev</button>
+    <button id="nextFirst">Go to Next</button>
+    <button id="toPrev">Go to Previous</button>
+    <button id="toNext">Go to Next</button>
+    <br />
+    <button id="prevOrLast">Go to Previous Plugin</button>
+    <button id="nextOrFirst">Go to Next Plugin</button>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <script>
+        function onLiClick() {
+            alert($(this).text());
+            // remove event
+            $('ul').off('click', onLiClick);
+        }
+        // add event optimized (add the event to the parrent)
+        $('ul').on('click', 'li', onLiClick);
+        // has the event too
+        $('ul').append($('<li/>').text('NEW'));
+
+        //function onLiClick() {
+        //alert($(this).text());
+        //remove event
+        //$('#li').off('click', onLiClick);
+        //}
+        //$('li').on('click', onLiClick);
+        //$('ul').append($('<li/>').text('NEW LI (HAS NO EVENT ATTACHED)'));
+
+        // add()
+        // Create a new jQuery object with elements added to the set of matched elements.
+        var point = $('#point'),
+            firstSpan = $('#sp1');
+        $('#firstOl')
+            .add('#firstUl') // selector
+            .add($('#sp5')) // element
+            .add(firstSpan) // element
+            .add('span', point) // element inside context
+            .css('color', 'red')
+            .css('opacity', 0.9);
+
+        // addBack()
+        // Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
+        // without addBack() #addBack will not have yellow background
+        $('#addBack').find('ul').addBack().css('background', 'yellow');
+
+        // addClass()
+        $("ul li")
+            .addClass('liBorder')
+            .addClass(function (index, currentClass) {
+                var addedClass = "li" + index;
+                if (currentClass.indexOf('oldLiClass') != -1) {
+                    addedClass = "newLiClass";
+                    $("#li").text("addClass() changed text and class name too!");
+                }
+                return addedClass;
+            });
+
+        // after()
+        $(".inner").after("<p>after()</p>");
+        $(".after").after($(".h5after"), [$(".h3after"), $(".h4after")]);
+        //$(".after").after($(".h5after"), $(".h3after"), $(".h4after"));
+        $(".after").after(function () {
+            return "<div>FUNCTION</div>";
+        });
+        $(".after").after(function () {
+            return $(".h6after"); // copy it, not clone
+        });
+
+        // ajaxComplete() ajaxSuccess()  ajaxError() ......
+        $(document)
+            .ajaxStart(function () {
+                $("#loading").show(1000);
+            })
+            .ajaxSend(function () {
+                $("#sendAjax").text("Triggered ajaxSend() handler.");
+            })
+            .ajaxComplete(function () {
+                $("#logAjax").text("Triggered ajaxComplete() handler.");
+            })
+            .ajaxSuccess(function () {
+                $("#successAjax").text('SUCCESS');
+            })
+            .ajaxError(function () {
+                $("#errorAjax").text("Triggered ajaxError() handler.");
+            })
+            .ajaxStop(function () {
+                $("#loading").hide(1000);
+            });
+
+        $("#triggerAjax").click(function () {
+            $("#resultAjax").load("partial.html", function (response, status, xhr) {
+                if (status != "error") {
+                    $("#callbackAjax").text("Triggered with success callback.");
+                } else {
+                    var msg = "Sorry but there was an error: ";
+                    $("#errorLoad").html(msg + xhr.status + " " + xhr.statusText);
+                }
+            });
+        });
+
+        // Selector('*')
+        var elementCount = $("#addBack").find("*").length;
+        $("#elementsCount").text(elementCount);
+
+        // animate()
+        $("#right").click(function () {
+            $(".block").animate({ "left": "+=100px", opacity: 0.5 }, "slow");
+        });
+
+        $("#left").click(function () {
+            $(".block").animate({ "left": "-=100px", opacity: 1 }, "slow");
+        });
+
+        // :animated Selector
+        $("#right, #left").click(function () {
+            $("div:animated").toggleClass("colored");
+        });
+
+        // callbacks.add( callbacks )
+        var firstCallback = function (value) {
+            console.log('First: ' + value);
+        },
+            secondCallback = function (value) {
+                console.log('Second: ' + value);
+            };
+        var callbacks = $.Callbacks();
+        callbacks.add(firstCallback);
+        callbacks.add(firstCallback);
+        callbacks.fire('fire1');
+        callbacks.remove(firstCallback);
+        callbacks.fire('fire2');
+        callbacks.add(firstCallback);
+        callbacks.add(secondCallback);
+        callbacks.fire('fire3');
+        callbacks.disable();
+        callbacks.fire('again');
+        console.log(callbacks.disabled(firstCallback));
+        console.log(callbacks.fired(firstCallback));
+
+        // deferred
+        $.get("test.php")
+            .done(function () {
+                console.log("$.get succeeded");
+            })
+            .fail(function () {
+                console.log("$.get failed!");
+            })
+            .always(function () {
+                console.log("$.get completed with success or error callback arguments");
+            });
+
+        // delay
+        //$("#firstUl").slideUp(1000).delay(1000).slideDown(1000);
+        //$("#firstOl").slideUp(1000).slideDown(1000);
+
+        // delegate
+        $("#delegate").delegate("p", "click", function () {
+            $(this).after("<p>Another paragraph!</p>");
+        });
+
+        // on
+        $("div.test").on('click mouseenter mouseleave', function () {
+            $(this).toggleClass("active");
+        });
+
+        // next() prev() first() last()
+        (function () {
+            var $curr = $("#start").addClass('currentSpan');
+            $("#prevLast").click(function () {
+                $curr.removeClass('currentSpan');
+                var $prev = $curr.prev();
+                if ($prev.length === 0) {
+                    $curr = $curr.siblings(":last");
+                } else {
+                    $curr = $prev;
+                }
+
+                $curr.addClass('currentSpan');
+            });
+
+            $("#nextFirst").click(function () {
+                $curr.removeClass('currentSpan');
+                var $next = $curr.next();
+                if ($next.length === 0) {
+                    $curr = $curr.siblings(":first");
+                } else {
+                    $curr = $next;
+                }
+
+                $curr.addClass('currentSpan');
+            });
+
+            $("#toPrev").click(function () {
+                $curr.removeClass('currentSpan');
+                var $prev = $curr.prev();
+                if ($prev.length === 0) {
+                    $curr = $curr.siblings().last();
+                } else {
+                    $curr = $prev;
+                }
+
+                $curr.addClass('currentSpan');
+            });
+
+            $("#toNext").click(function () {
+                $curr.removeClass('currentSpan');
+                var $next = $curr.next();
+                if ($next.length === 0) {
+                    $curr = $curr.siblings().first();
+                } else {
+                    $curr = $next;
+                }
+
+                $curr.addClass('currentSpan');
+            });
+
+            // plugin
+            $("#nextOrFirst").nextOrFirst($curr, 'scroll');
+            $("#prevOrLast").prevOrLast($curr, 'scroll');
+        }());
+
+        
+
+    </script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+</body>
+</html>

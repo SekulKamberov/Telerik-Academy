@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extension-Methods-Delegates-Lambda-LINQ", "Extension-Methods-Delegates-Lambda-LINQ\Extension-Methods-Delegates-Lambda-LINQ.csproj", "{FF01AEB5-FA43-4A38-8C8B-FB1D1CA0A8DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-16.StudentProject", "StudentProject\09-16.StudentProject.csproj", "{0C90BEC0-94C4-4B36-981B-6896F0196C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "017.StringMaxLen", "017.StringMaxLen\017.StringMaxLen.csproj", "{17D3C853-1827-49EC-BB02-5B1F1DBEABF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "018-19.StudentsByGroupName", "018-19.StudentsByGroupName\018-19.StudentsByGroupName.csproj", "{9D817885-2236-4A54-86D1-7AE25A08BC72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF01AEB5-FA43-4A38-8C8B-FB1D1CA0A8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF01AEB5-FA43-4A38-8C8B-FB1D1CA0A8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF01AEB5-FA43-4A38-8C8B-FB1D1CA0A8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF01AEB5-FA43-4A38-8C8B-FB1D1CA0A8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C90BEC0-94C4-4B36-981B-6896F0196C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C90BEC0-94C4-4B36-981B-6896F0196C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C90BEC0-94C4-4B36-981B-6896F0196C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C90BEC0-94C4-4B36-981B-6896F0196C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D3C853-1827-49EC-BB02-5B1F1DBEABF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D3C853-1827-49EC-BB02-5B1F1DBEABF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D3C853-1827-49EC-BB02-5B1F1DBEABF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D3C853-1827-49EC-BB02-5B1F1DBEABF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D817885-2236-4A54-86D1-7AE25A08BC72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D817885-2236-4A54-86D1-7AE25A08BC72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D817885-2236-4A54-86D1-7AE25A08BC72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D817885-2236-4A54-86D1-7AE25A08BC72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

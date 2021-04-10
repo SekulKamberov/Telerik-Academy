@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Prototype Based Inheritance HW</title>
+</head>
+<body>
+    <script>
+        var domElement = (function () {
+            var domElement = {};
+
+            Object.defineProperty(domElement, 'init', {
+                value: function (type) {
+                    this.type = type;
+                    this.attributes = [];
+                    this.children = [];
+                    return this;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'type', {
+                get: function () {
+                    return this._type;
+                },
+                set: function (value) {
+                    if (!value) {
+                        throw new Error('Type is required!');
+                    }
+                    if (value.match(/^\w+$/g) === null) { // letters and numbers only
+                        throw new Error('Use letters and numbers only for type!');
+                    }
+
+                    this._type = value;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'innerHtml', {
+                get: function () {
+                    this.attributes = this.attributes.sort(function (x, y) {
+                        if (x.name < y.name) {
+                            return -1;
+                        }
+                        if (x.name > y.name) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+
+                    var result = '<' + this._type;
+
+                    for (var i in this.attributes) {
+                        var attr = this.attributes[i];
+                        result += ' ' + attr.name + '="' + attr.value + '"';
+                    }
+                    result += '>';
+                    if (this.children.length > 0) {
+                        for (var index in this.children) {
+                            var child = this.children[index];
+
+                            if (typeof child === 'string') {
+                                result += child;
+                            } else {
+                                result += child.innerHTML;
+                            }
+                        }
+                    } else {
+                        if (this._content !== undefined) {
+                            result += this._content;
+                        }
+                    }
+
+                    result += '</' + this._type + '>';
+                    return result;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'content', {
+                get: function () {
+                    return this._content;
+                },
+                set: function (value) {
+                    if (this.children.length > 0) {
+                        // children is not empty
+                    } else {
+                        this._content = value;
+                    }
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'parent', {
+                get: function () {
+                    return this._parent;
+                },
+                set: function (value) {
+                    if (typeof value !== typeof this) {
+                        throw new Error('Parent must be domElement too!');
+                    }
+
+                    this._parent = value;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'appendChild', {
+                value: function (child) {
+                    if (typeof child === 'string') {
+                        this._content = child;
+                        this.children.push(child);
+                        return this;
+                    }
+
+                    if ((typeof child !== typeof this)) {
+                        throw new Error('Child is required string or another domElement! ');
+                    }
+
+                    this.children.push(child);
+                    child.parent = this;
+
+                    return this;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'addAttribute', {
+                value: function (name, value) {
+                    if (!name) {
+                        throw new Error('Attribute name is required!');
+                    }
+                    if (name.match(/^[0-z-]+$/g) === null) {
+                        throw new Error('Use letters and numbers only for attribute name!');
+                    }
+
+                    var sameAttribute = this.attributes.some(function (item, index, array) {
+                        if (item.name === name) {
+                            item.value = value;
+                        }
+
+                        return item.name === name;
+                    });
+
+                    if (sameAttribute) {
+                        return this;
+                    }
+
+                    var attribute = {
+                        name: name,
+                        value: value,
+                    };
+
+                    this.attributes.push(attribute);
+
+                    return this;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(domElement, 'removeAttribute', {
+                value: function (attribute) {
+                    var containsAttribute = this.attributes.some(function (item, index, array) {
+                        return item.name === attribute;
+                    });
+
+                    if (!containsAttribute) {
+                        throw Error('Does not contain attribute!');
+                    }
+
+                    this.attributes = this.attributes.filter(function (item, index, array) {
+                        return item.name !== attribute;
+                    });
+
+                    return this;
+                },
+                enumerable: true
+            });
+
+            return domElement;
+        }());
+
+        var domElement = (function () {
+            var domElement = {
+                init: function (type) {
+                    this.type = type;
+                    this.attributes = [];
+                    this.children = [];
+                    return this;
+                },
+
+                get type() {
+                    return this._type;
+                },
+                set type(value) {
+                    if (!value) {
+                        throw new Error('Type is required!');
+                    }
+                    if (value.match(/^\w+$/g) === null) { // letters and numbers only
+                        throw new Error('Use letters and numbers only for type!');
+                    }
+
+                    this._type = value;
+                },
+
+                get innerHTML() {
+                    this.attributes = this.attributes.sort(function (x, y) {
+                        if (x.name < y.name) {
+                            return -1;
+                        }
+                        if (x.name > y.name) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+
+                    var result = '<' + this._type;
+
+                    for (var i in this.attributes) {
+                        var attr = this.attributes[i];
+                        result += ' ' + attr.name + '="' + attr.value + '"';
+                    }
+                    result += '>';
+                    if (this.children.length > 0) {
+                        for (var index in this.children) {
+                            var child = this.children[index];
+
+                            if (typeof child === 'string') {
+                                result += child;
+                            } else {
+                                result += child.innerHTML;
+                            }
+                        }
+                    } else {
+                        if (this._content !== undefined) {
+                            result += this._content;
+                        }
+                    }
+
+                    result += '</' + this._type + '>';
+                    return result;
+                },
+
+                get content() {
+                    return this._content;
+                },
+                set content(value) {
+                    if (this.children.length > 0) {
+                        // children is not empty
+                    } else {
+                        this._content = value;
+                    }
+                },
+
+                get parent() {
+                    return this._parent;
+                },
+                set parent(value) {
+                    if (typeof value !== typeof this) {
+                        throw new Error('Parent must be domElement too!');
+                    }
+
+                    this._parent = value;
+                },
+
+                appendChild: function (child) {
+                    if (typeof child === 'string') {
+                        this._content = child;
+                        this.children.push(child);
+                        return this;
+                    }
+
+                    if ((typeof child !== typeof this)) {
+                        throw new Error('Child is required string or another domElement! ');
+                    }
+
+                    this.children.push(child);
+                    child.parent = this;
+
+                    return this;
+                },
+
+                addAttribute: function (name, value) {
+                    if (!name) {
+                        throw new Error('Attribute name is required!');
+                    }
+                    if (name.match(/^[0-z-]+$/g) === null) {
+                        throw new Error('Use letters and numbers only for attribute name!');
+                    }
+
+                    var sameAttribute = this.attributes.some(function (item, index, array) {
+                        if (item.name === name) {
+                            item.value = value;
+                        }
+
+                        return item.name === name;
+                    });
+
+                    if (sameAttribute) {
+                        return this;
+                    }
+
+                    var attribute = {
+                        name: name,
+                        value: value,
+                    };
+
+                    this.attributes.push(attribute);
+
+                    return this;
+                },
+                removeAttribute: function (attribute) {
+                    var containsAttribute = this.attributes.some(function (item, index, array) {
+                        return item.name === attribute;
+                    });
+
+                    if (!containsAttribute) {
+                        throw Error('Does not contain attribute!');
+                    }
+
+                    this.attributes = this.attributes.filter(function (item, index, array) {
+                        return item.name !== attribute;
+                    });
+
+                    return this;
+                },
+            };
+            return domElement;
+        }());
+
+        var meta = Object.create(domElement)
+            .init('meta')
+            .addAttribute('cha-rset2', 'utf-8');
+
+        var head = Object.create(domElement)
+            .init('head')
+            .appendChild(meta)
+
+        var div = Object.create(domElement)
+            .init('div')
+            .addAttribute('style', 'font-size: 42px');
+
+        div.content = 'Hello, world!';
+
+        var body = Object.create(domElement)
+            .init('body')
+            .appendChild(div)
+            .addAttribute('id', 'myid')
+            .addAttribute('bgcolor', '#012345');
+
+        var root = Object.create(domElement)
+            .init('html')
+            .appendChild(head)
+            .appendChild(body);
+
+        console.log(root.innerHTML);
+    </script>
+</body>
+</html>

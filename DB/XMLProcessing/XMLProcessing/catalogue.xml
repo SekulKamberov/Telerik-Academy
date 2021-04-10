@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<albums>
+  <album>
+    <name>The best of Gosho</name>
+    <artist>Gosho</artist>
+    <year>2009</year>
+    <producer>Gosho</producer>
+    <price>19.99</price>
+    <songs>
+      <song>
+        <title>Gosho is the best</title>
+        <duration>3.44</duration>
+      </song>
+      <song>
+        <title>Kenliiii</title>
+        <duration>3.54</duration>
+      </song>
+      <song>
+        <title>Hodih na kupona</title>
+        <duration>3.24</duration>
+      </song>
+    </songs>
+  </album>
+  <album>
+    <name>The best of Gosho II</name>
+    <artist>Gosho</artist>
+    <year>2011</year>
+    <producer>Gosho</producer>
+    <price>19.99</price>
+    <songs>
+      <song>
+        <title>Gosho is the best Remix</title>
+        <duration>3.44</duration>
+      </song>
+      <song>
+        <title>Kenliiii Remix</title>
+        <duration>3.54</duration>
+      </song>
+      <song>
+        <title>Hodih na kupona PAK I PAK I PAK</title>
+        <duration>3.24</duration>
+      </song>
+    </songs>
+  </album>
+</albums>

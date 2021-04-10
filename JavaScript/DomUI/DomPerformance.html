@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DOM Performance</title>
+    <style>
+        .important-div{
+            color: red;
+        }
+
+        .mid-important-div{
+            color: #ff6a00;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Li 1</li>
+        <li class="alert">Li 2</li>
+        <li>Li 3</li>
+        <li class="alert">Li 4</li>
+        <li>Li 5</li>
+    </ul>
+    <div id="root"></div>
+    <script src="jquery.min.js"></script>
+    <script>
+        // Create Element
+        var root = document.getElementById('root'),
+            div = document.createElement('div'),
+            article = document.createElement('article'),
+            header = document.createElement('header'),
+            h1 = document.createElement('h1');
+        div.appendChild(article);
+        div.className ='important-div';
+        article.appendChild(header);
+        header.appendChild(h1);
+
+        var docFragment = document.createDocumentFragment();
+        var count = 10,
+            i;
+        for (i = 0; i < count; i+=1) {
+            h1.innerHTML = 'Heading #' + i;
+            div.id = 'the-div-' + i;
+
+            docFragment.appendChild(div.cloneNode(true));
+        }
+
+        root.appendChild(docFragment);
+
+        //var $root = $(root);
+        //var $content = $('<div/>');
+
+        //for (var i = 0; i < 10; i+=1) {
+        //    var $div = $('<div/>')
+        //        .addClass('mid-important-div')
+        //        .append($('<article/>')
+        //            .append($('<header/>')
+        //                .append($('<h1/>').text('$Heading ' + i))));
+
+        //    $content.append($div);
+        //}
+
+        //$root.append($content.html());
+
+        var $root = $(root);
+        var $content = $('<div/>');
+        var $div = $('<div/>').addClass('mid-important-div'),
+            $article = $('<article/>'),
+            $header = $('<header/>'),
+            $h1 = $('<h1/>');
+
+        $header.append($h1);
+        $article.append($header);
+        $div.append($article);
+
+        for (var i = 0; i < 10; i += 1) {
+            $h1.text('$Heading ' + i);
+            $div.attr('id', 'the-$div-' + i);
+
+            $content.append($div.clone());
+        }
+
+        $root.append($content.html());
+
+        // events
+        function handler(ev) {
+            var target = ev.target;
+            if (target.className.indexOf('alert') >= 0) {
+                alert(target.innerHTML);
+            }
+        }
+
+        var list = document.querySelector('ul');
+        list.addEventListener('click', handler);
+
+        var item = document.createElement('li');
+        item.className = 'alert';
+        item.innerHTML = 'NEW';
+        list.appendChild(item);
+    </script>
+</body>
+</html>

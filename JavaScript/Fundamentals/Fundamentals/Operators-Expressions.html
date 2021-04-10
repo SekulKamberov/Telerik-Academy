@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Operators and Expressions</h1>
+    <h2>Problem 1. Odd or Even</h2>
+    <ul>
+        <li>Write an expression that checks if given integer is odd or even.</li>
+    </ul>
+    <h2>Problem 2. Divisible by 7 and 5</h2>
+    <ul>
+        <li>Write a boolean expression that checks for given integer if it can be divided (without remainder) by 7 and 5 in the same time.</li>
+    </ul>
+    <h2>Problem 3. Rectangle area</h2>
+    <ul>
+        <li>Write an expression that calculates rectangle’s area by given width and height.</li>
+    </ul>
+    <h2>Problem 4. Third digit</h2>
+    <ul>
+        <li>Write an expression that checks for given integer if its third digit (right-to-left) is 7.</li>
+    </ul>
+    <h2>Problem 5. Third bit</h2>
+    <ul>
+        <li>Write a boolean expression for finding if the bit #3 (counting from 0) of a given integer.</li>
+        <li>The bits are counted from right to left, starting from bit #0.</li>
+        <li>The result of the expression should be either 1 or 0.</li>
+    </ul>
+    <h2>Problem 6. Point in Circle</h2>
+    <ul>
+        <li>Write an expression that checks if given point P(x, y) is within a circle K({0,0}, 5). //{0,0} is the centre and 5 is the radius</li>
+    </ul>
+    <h2>Problem 7. Is prime</h2>
+    <ul>
+        <li>Write an expression that checks if given positive integer number n (n ≤ 100) is prime.</li>
+    </ul>
+    <h2>Problem 8. Trapezoid area</h2>
+    <ul>
+        <li>Write an expression that calculates trapezoid's area by given sides a and b and height h.</li>
+    </ul>
+    <h2>Problem 9. Point in Circle and outside Rectangle</h2>
+    <ul>
+        <li>Write an expression that checks for given point P(x, y) if it is within the circle K( (1,1), 3) and out of the rectangle R(top=1, left=-1, width=6, height=2).</li>
+    </ul>
+    <script>
+        console.log('==============1==============');
+        var number = 15;
+        var isEven = number % 2 === 0;
+        console.log(number + ' is even: ' + isEven);
+        number = 6;
+        isEven = number % 2 === 0;
+        console.log(number + ' is even: ' + isEven);
+
+        console.log('==============2==============');
+        number = 35;
+        var canBeDivided = number % 7 === 0 && number % 5 === 0;
+        console.log(number + ' can be divided: ' + canBeDivided);
+        number = 34;
+        canBeDivided = number % 7 === 0 && number % 5 === 0;
+        console.log(number + ' can be divided: ' + canBeDivided);
+
+        console.log('==============3==============');
+        var width = 35;
+        var hight = 12;
+        var area = width * hight;
+        console.log('Width: ' + width + ' Heght: ' + hight + ' Area: ' + area);
+        width = 4;
+        hight = 5;
+        area = width * hight;
+        console.log('Width: ' + width + ' Heght: ' + hight + ' Area: ' + area);
+
+        console.log('==============4==============');
+
+        number = 399765;
+        var hundreds = (number / 100 | 0) % 10;
+        console.log('Third digit of ' + number + ' is: ' + hundreds);
+        number = 123456;
+        hundreds = (number / 100 | 0) % 10;
+        console.log('Third digit of ' + number + ' is: ' + hundreds);
+
+        console.log('==============5==============');
+
+        var thirdBitMask = 1 << 3;
+        console.log('Third bid mask: ' + thirdBitMask.toString(2));
+        number = 21;
+        var result = (number & thirdBitMask) >> 3;
+        console.log('Third bit of ' + number + '(' + number.toString(2) + ')' +  ' is: ' + result);
+        number = 14;
+        result = (number & thirdBitMask) >> 3;
+        console.log('Third bit of ' + number + '(' + number.toString(2) + ')' + ' is: ' + result);
+
+        console.log('==============6==============');
+
+        var point = { x: -3, y: 4 };
+        var distanvceFromCenter = Math.sqrt(point.x * point.x + point.y * point.y);
+        console.log(distanvceFromCenter);
+        console.log('Point(' + point.x + ', ' + point.y + ') is within the circle K({0,0}, 5): ' + (5 >= distanvceFromCenter ? true : false));
+
+        point = { x: 5, y: 4 };
+        distanvceFromCenter = Math.sqrt(point.x * point.x + point.y * point.y);
+        console.log(distanvceFromCenter);
+        console.log('Point(' + point.x + ', ' + point.y + ') is within the circle K({0,0}, 5): ' + (5 >= distanvceFromCenter ? true : false));
+
+        console.log('==============7==============');
+
+        var primeNumbers = [];
+        for (var i = 2; i <= 100; i+= 1) {
+            if (i === 1 || i === 2 || i === 3 || i === 5 || i === 7) {
+                //console.log(i + ' is prime');
+                primeNumbers.push(i);
+            } else if (i % 2 === 0 || i % 3 === 0 || i % 5 === 0 || i % 7 === 0){
+                //console.log(i + ' is not prime');
+            } else {
+                primeNumbers.push(i);
+                //console.log(i + ' is prime');
+            }
+        }
+        console.log('Prime numbers: ' + primeNumbers.join(", "));
+
+        console.log('==============8==============');
+
+        var a = 5;
+        var b = 3;
+        var h = 5;
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+        console.log('h = ' + h);
+        console.log('Area: ' + (a + b) * h / 2);
+        a = 6;
+        b = 4;
+        h = 6;
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+        console.log('h = ' + h);
+        console.log('Area: ' + (a + b) * h / 2);
+
+        console.log('==============9==============');
+
+        point = { x: 5, y: 4 };
+        distanvceFromCenter = Math.sqrt((point.x - 1) * (point.x - 1) + (point.y - 1) * (point.y - 1));
+        var isInsideCircle = 3 >= distanvceFromCenter ? true : false;
+        var isOutsideRectangle = (point.x < -1 || point.x > 5) || (point.y > 1 || point.y < -1);
+        console.log('Point(' + point.x + ', ' + point.y + ') is within the circle K({1,1}, 3): ' + isInsideCircle);
+        console.log('...and outside the rectangle (top=1, left=-1, width=6, height=2): ' + isOutsideRectangle);
+
+        point = { x: 0, y: 0 };
+        distanvceFromCenter = Math.sqrt((point.x - 1) * (point.x - 1) + (point.y - 1) * (point.y - 1));
+        isInsideCircle = 3 >= distanvceFromCenter ? true : false;
+        isOutsideRectangle = (point.x < -1 || point.x > 5) || (point.y > 1 || point.y < -1);
+        console.log('Point(' + point.x + ', ' + point.y + ') is within the circle K({1,1}, 3): ' + isInsideCircle);
+        console.log('...and outside the rectangle (top=1, left=-1, width=6, height=2): ' + isOutsideRectangle);
+    </script>
+</body>
+</html>

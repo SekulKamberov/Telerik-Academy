@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        function AgeError(message, minAge, maxAge) {
+            this.name = 'AgeError';
+            this.message = message;
+            this.minAge = minAge;
+            this.maxAge = maxAge;
+        }
+
+        AgeError.prototype = Error.prototype;
+
+        try {
+            var randomNumber = Math.random() * 5 | 0,
+                exceptions = [
+                'function(){};',
+                'f();',
+                'var f; f();',
+                'throw new AgeError("AgeErrorThrown", 21, 34);',
+                '',
+            ];            
+            console.log(randomNumber);
+            eval(exceptions[randomNumber]);
+
+            throw {
+                name: 'CustomException',
+                message: 'You are hacked!'
+            };
+
+            console.log('this will not print!');
+        } catch (ex) {
+            switch (ex.name) {
+                case 'SyntaxError':
+                    console.log(ex.name);
+                    console.log(ex.message);
+                    break;
+                case 'ReferenceError':
+                    console.log(ex.name);
+                    console.log(ex.message);
+                    break;
+                case 'TypeError':
+                    console.log(ex.name);
+                    console.log(ex.message);
+                    break;
+                case 'AgeError':
+                    console.log(ex.name);
+                    console.log('Age is out of range: ('+ ex.minAge + ', ' + ex.maxAge + ')' );
+                    console.log(ex.message);
+                    break;
+                case 'CustomException':
+                    console.log('My Exception: ' + ex.name);
+                    console.log(ex.message);
+                    break;
+                default: console.log('Default!!!');
+
+                    console.log(ex.name);
+            }
+        } finally {
+            console.log("Finish!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Loops</h1>
+
+    <h2>Problem 1. Numbers</h2>
+    <ul>
+        <li>Write a script that prints all the numbers from 1 to N.</li>
+    </ul>
+    <h2>Problem 2. Numbers not divisible</h2>
+    <ul>
+        <li>Write a script that prints all the numbers from 1 to N, that are not divisible by 3 and 7 at the same time</li>
+    </ul>
+    <h2>Problem 3. Min/Max of sequence</h2>
+    <ul>
+        <li>Write a script that finds the max and min number from a sequence of numbers.</li>
+    </ul>
+    <h2>Problem 4. Lexicographically smallest</h2>
+    <ul>
+        <li>Write a script that finds the lexicographically smallest and largest property in document, window and navigator objects.</li>
+    </ul>
+    <script>
+        console.log('==========1==========');
+        var i;
+        var N = 10;
+        for (i = 1; i <= N; i+=1) {
+            console.log(i);
+        }
+        console.log('==========2==========');
+        N = 78;
+        for (i = 0; i < N; i+=1) {
+            if (i % 7 || i % 3) {
+                console.log(i);
+            }
+        }
+        console.log('==========3==========');
+        var numbers = [6, 1, 5, 4, 3, 7, 9, 2, 8];
+        //for(var j of numbers){
+        //    console.log(j);
+        //}
+        var MIN = Infinity;
+        var MAX = -Infinity;
+        for (var i in numbers) {
+            if (MAX < numbers[i]) {
+                MAX = numbers[i];
+            }
+            if (MIN > numbers[i]) {
+                MIN = numbers[i];
+            }
+        }
+        console.log('MIN: ' + MIN);
+        console.log('MAX: ' + MAX);
+        console.log('==========4==========');
+        var largest = 'ZZ';
+        var smallest = 'aa';
+        var properties = [document, window, navigator];
+        for (var n in properties) {
+            //console.log(properties[i]);
+            console.log(properties[n] + '...');
+            for (var property in properties[n]) {
+                //console.log(property);
+                if (property > largest) {
+                    largest = property;
+                } else if (property < smallest) {
+                    smallest = property;
+                }
+
+            }
+        }
+
+
+        console.log('Smallest: ' + smallest);
+        console.log('Largest: ' + largest);
+    </script>
+</body>
+</html>

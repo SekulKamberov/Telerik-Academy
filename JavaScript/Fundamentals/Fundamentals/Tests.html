@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tests</title>
+</head>
+<body>
+    <script>
+        var arr = [
+            [],
+            [],
+            []
+        ];
+        console.log(arr);
+        console.log('===========slice===========');
+        var numbers = [0, 1, 2, 3, 4, 5, 6, 7];
+        console.log(numbers);
+        console.log(numbers.slice(2, 4));
+        console.log(numbers.slice(2));
+        console.log(numbers.reverse());
+        console.log(numbers.reverse());
+        console.log('===========splice===========');
+        console.log('remove(position, count) => splice(1, 2)');
+        console.log('Removed => ' + numbers.splice(1, 2));
+        console.log(numbers);
+        console.log('remove + insert (position, count, insert, insert,...,...) => splice(1, 2, 8, 8, 8)');
+        console.log('Removed => ' + numbers.splice(1, 2, 8, 8, 8));
+        console.log(numbers);
+        console.log('insert => splice(5, 0, "pesho", "gosho")');
+        console.log('Removed => ' + numbers.splice(5, 0, 'pesho', 'gosho'));
+        console.log(numbers);
+
+        console.log('===========function arguments===========');
+
+        function sumNumbers(numbers) {
+            // cast to array
+            var args = [].slice.apply(arguments),
+                sum = 0,
+                i;
+            for (i in args) {
+                sum += args[i] | 0;
+            }
+
+            return sum;
+        }
+
+        console.log('Numbers: ' + sumNumbers(1, 2, 3, 4, 5));
+        console.log('Array: ' + sumNumbers([1, 2, 3, 4, 5]));
+
+        console.log('===========inner function===========');
+
+        function outer(num) {
+
+            inner();
+            return num;
+
+            function inner() {
+                inner2();
+                console.log('From inner: ' + num);
+                num *= 2;
+
+                function inner2() {
+                    console.log('From inner2: ' + num);
+                    num *= 2;
+                }
+            }
+        }
+
+        console.log(outer(12));
+
+        console.log('===========scope===========');
+
+        if (true) {
+            var a = 4;
+        }
+
+        console.log('a:' + a);
+
+        if (false) {
+            var b = 4;
+        }
+
+        console.log('b:' + b);
+
+        if (true) {
+            c = 4;
+        }
+
+        console.log('c:' + c);
+
+        // dont do this
+        //if (false) {
+        //    d = 4;
+        //}
+
+        //console.log('d:' + d);
+
+        console.log('===========function scope===========');
+        function global() {
+            // wrong, always var prop => var count = 4;
+            count = 4;
+        }
+
+        global();
+
+        console.log(count);
+
+        console.log('===========ovverloading===========');
+
+        function sum(firstNumber, secondNumber, thirdNumber) {
+            var sum;
+            switch (arguments.length) {
+                case 0: break;
+                case 1: sum = firstNumber; break;
+                case 2: sum = firstNumber + secondNumber; break;
+                case 3: sum = firstNumber + secondNumber + thirdNumber; break;
+                default:
+                    sum = 0;
+            }
+            return sum;
+        }
+        console.log(sum(1));
+        console.log(sum(1, 2));
+        console.log(sum(1, 2, 3));
+        console.log(sum(1, 2, 3, 4));
+        console.log(sum());
+
+        function sumOfNumbers(numbers) {
+            if (!Array.isArray(numbers)) {
+                numbers = [];
+            }
+            var i,
+                sum = 0;
+            for (i in numbers) {
+                sum += numbers[i] | 0;
+            }
+
+            return sum;
+        }
+
+        console.log('Empty: ' + sumOfNumbers());
+        console.log('Single number (2): ' + sumOfNumbers(2));
+        console.log('Array [5]: ' + sumOfNumbers([5]));
+        console.log('Array [5, 6]: ' + sumOfNumbers([5, 6]));
+
+        console.log('===========options===========');
+
+        function customSubstring(string, start, end) {
+            string = string || '';
+            start = start || 0;
+            end = end || string.length;
+
+            return string.substring(start, end);
+        }
+
+        console.log(customSubstring());
+        console.log(customSubstring(''));
+        console.log(customSubstring('012345678'));
+        console.log(customSubstring('012345678', 2, 9));
+        console.log(customSubstring('012345678', 2, 19));
+        console.log(customSubstring('012345678', 3, -2));
+
+    </script>
+</body>
+</html>

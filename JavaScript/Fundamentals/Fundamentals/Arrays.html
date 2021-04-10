@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrays</title>
+</head>
+<body>
+    <h1>Arrays</h1>
+
+    <h2>Problem 1. Increase array members</h2>
+    <ul>
+        <li>Write a script that allocates array of 20 integers and initializes each element by its index multiplied by 5.</li>
+        <li>Print the obtained array on the console.</li>
+    </ul>
+    <h2>Problem 2. Lexicographically comparison</h2>
+    <ul>
+        <li>Write a script that compares two char arrays lexicographically (letter by letter).</li>
+    </ul>
+    <h2>Problem 3. Maximal sequence</h2>
+    <ul>
+        <li>Write a script that finds the maximal sequence of equal elements in an array.</li>
+    </ul>
+    <h2>Problem 4. Maximal increasing sequence</h2>
+    <ul>
+        <li>Write a script that finds the maximal increasing sequence in an array.</li>
+    </ul>
+    <h2>Problem 5. Selection sort</h2>
+    <ul>
+        <li>Sorting an array means to arrange its elements in increasing order.</li>
+        <li>Write a script to sort an array.</li>
+        <li>Use the selection sort algorithm: Find the smallest element, move it at the first position, find the smallest from the rest, move it at the second position, etc.</li>
+    </ul>
+    <h2>Problem 6. Most frequent number</h2>
+    <ul>
+        <li>Write a script that finds the most frequent number in an array.</li>
+    </ul>
+    <h2>Problem 7. Binary search</h2>
+    <ul>
+        <li>Write a script that finds the index of given element in a sorted array of integers by using the binary search algorithm.</li>
+    </ul>
+    <script>
+        console.log('==========1==========');
+        var i,
+            len,
+            count = '20',
+            arr = [];
+        arr[count - 1] = undefined;
+        for (i = 0, len = arr.length; i < len; i += 1) {
+            arr[i] = i * 5;
+        }
+        console.log(arr);
+        console.log('==========2==========');
+        var maxLen,
+            areEqual = true,
+            firstArr = ['a', 'c', 'd', 'r', 'n', 'g'],
+            firstArrLength = firstArr.length,
+            secondArr = ['a', 'c', 'b', 'r', 'n', 'g'],
+            secondArrLength = secondArr.length;
+        maxLen = (firstArrLength < secondArrLength ? firstArrLength : secondArrLength);
+        console.log(maxLen);
+        for (i = 0; i < maxLen; i += 1) {
+            if (firstArr[i] < secondArr[i]) {
+                console.log(firstArr[i] + '<' + secondArr[i]);
+                console.log('First Array < Second Array');
+                areEqual = false;
+                break;
+            } else if (secondArr[i] < firstArr[i]) {
+                console.log(firstArr[i] + '>' + secondArr[i]);
+                console.log('Second Array < First Array');
+                areEqual = false;
+                break;
+            } else {
+                console.log(firstArr[i] + '=' + secondArr[i]);
+            }
+        }
+
+        if (areEqual) {
+            console.log("Arrays are equal!");
+        }
+
+        console.log('==========3==========');
+        var elements = [1, 3, 3, 3, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 2, 2],
+            length = elements.length,
+            maxSequence = 1,
+            maxSequenceElementValue = elements[0],
+            tempSequence = 1,
+            tempSequenceElementValue = elements[0];
+
+        for (i = 1; i < length; i += 1) {
+            if (tempSequenceElementValue === elements[i]) {
+                tempSequence += 1;
+                if (maxSequence < tempSequence) {
+                    maxSequence = tempSequence;
+                    maxSequenceElementValue = tempSequenceElementValue;
+                }
+            } else {
+                tempSequence = 1;
+                tempSequenceElementValue = elements[i];
+            }
+        }
+        console.log('Value: ' + maxSequenceElementValue + ' Times: ' + maxSequence);
+
+        console.log('==========4==========');
+
+        elements = [1, 2, 1, 2, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 5, 5, 6, 1, 2, 3, 4];
+        length = elements.length;
+        tempSequenceElementValue = elements[0].toString();
+        maxSequence = 1;
+        var maxSequenceString = elements[0].toString(),
+            tempEncreasingSequence = 1,
+            tempSequenceString = elements[0];
+
+        for (i = 1; i < length; i += 1) {
+            if (tempSequenceElementValue < elements[i]) {
+                tempEncreasingSequence += 1;
+                tempSequenceString += ' ' + elements[i];
+
+                if (maxSequence < tempEncreasingSequence) {
+                    maxSequence = tempEncreasingSequence;
+                    maxSequenceString = tempSequenceString;
+                }
+            } else {
+                tempEncreasingSequence = 1;
+                tempSequenceString = elements[i].toString();
+            }
+
+            tempSequenceElementValue = elements[i];
+        }
+        console.log('Sequence: ' + maxSequenceString + ' Times: ' + maxSequence);
+
+        console.log('==========5==========');
+        var j,
+            minIndex,
+            temp,
+            numbers = [9, 4, 1, 5, 3, 1, 7, 6, 9, 2, 5, 8],
+            len = numbers.length;
+        console.log('Not Sorted: ' + numbers);
+        for (i = 0; i < len; i += 1) {
+            minIndex = i;
+            for (j = i + 1; j < len; j += 1) {
+                if (numbers[minIndex] > numbers[j]) {
+                    minIndex = j;
+                }
+            }
+
+            if (i != minIndex) {
+                temp = numbers[minIndex];
+                numbers[minIndex] = numbers[i];
+                numbers[i] = temp;
+            }
+        }
+
+        console.log('Sorted: ' + numbers);
+        console.log('==========6==========');
+        var randomArray = [4, 1, 1, 'Six', 'Six', 4, 2, 3, 4, 'Six', 'Six', 'Six', 4, 1, 2, 'Six', 4, 9, 3],
+            maxIndex = 0,
+            maxValue = randomArray[0],
+            dictionary = [],
+            currentValue,
+            e;
+        console.log(randomArray);
+        len = randomArray.length;
+        for (i = 0; i < len; i += 1) {
+            currentValue = randomArray[i];
+            if (dictionary[currentValue] === undefined) {
+                dictionary[currentValue] = 0;
+            }
+            dictionary[currentValue] += 1;
+        }
+        for (e in dictionary) {
+            if (maxIndex < dictionary[e]) {
+                maxIndex = dictionary[e];
+                maxValue = e;
+            }
+        }
+        console.log('Number: ' + maxValue + ' Times: ' + maxIndex);
+
+        console.log('==========7==========');
+
+        var sortedArray = [1, 3, 5, 6, 8, 10, 11, 13, 14, 15, 18, 21, 43, 65, 76, 87, 222, 432, 547, 7657],
+            len = sortedArray.length,
+            key,
+            i;
+        console.log(sortedArray);
+        for (i = 0; i < len; i += 1) {
+            key = sortedArray[i];
+            console.log('Number: ' + key + ' Index: ' + binarySearch(sortedArray, key));
+            minIndex = 0;
+            maxIndex = len - 1;
+            index = -1;
+        }
+
+        key = 111;
+        console.log('Number: ' + key + ' Index: ' + binarySearch(sortedArray, key));
+
+        function binarySearch(arr, key) {
+            var midIndex,
+                minIndex = 0,
+                len = arr.length,
+                maxIndex = len - 1,
+                index = -1;
+            while (minIndex <= maxIndex) {
+                midIndex = ((minIndex + maxIndex) / 2) | 0;
+                if (key === arr[midIndex]) {
+                    index = midIndex;
+                    break;
+                }
+                else if (key < arr[midIndex]) {
+                    maxIndex = midIndex - 1;
+                }
+                else {
+                    minIndex = midIndex + 1;
+                }
+            }
+
+            return index;
+        }
+
+        console.log('==========Tests==========');
+
+        var numbers = [],
+            arr2 = [1, 2, 3],
+            concat,
+            pushed,
+            poped,
+            unshifed,
+            shifted,
+            reversed;
+        console.log(numbers);
+        pushed = numbers.push(1, 4, 6, 7, 34, 13, 44);
+        console.log('Length: ' + pushed);
+        console.log(numbers);
+        pushed = numbers.push(55);
+        console.log('Length: ' + pushed);
+        console.log(numbers);
+        poped = numbers.pop();
+        console.log('Pop: ' + poped);
+        console.log(numbers);
+        unshifed = numbers.unshift(52);
+        console.log('Unshive(push to head)(Length): ' + unshifed);
+        console.log(numbers);
+        unshifed = numbers.unshift(55, 54, 53);
+        console.log('Unshive(push to head)(Length): ' + unshifed);
+        console.log(numbers);
+        shifted = numbers.shift();
+        console.log('Shift(remove from head): ' + shifted);
+        console.log(numbers);
+
+        reversed = numbers.reverse();
+        console.log('reverse(return): ' + reversed);
+        console.log('Numbers(original): ' + numbers);
+        console.log('join(\'\'): ' + numbers.join(''));
+        console.log('join(\', \'): ' + numbers.join(', '));
+        concat = numbers.concat(arr2);
+        console.log('concat: ' + concat.join(', '));
+        concat = numbers.concat(arr2, arr2, numbers);
+        console.log('concat: ' + concat.join(', '));
+        console.log('slice(0, 2): ' + numbers.slice(0, 2));
+        console.log('slice(2, 4): ' + numbers.slice(2, 4));
+        console.log('slice(-1): ' + numbers.slice(-1));
+        console.log('slice(-2): ' + numbers.slice(-2));
+        console.log('slice(-22): ' + numbers.slice(-22));
+        console.log('slice(-2, -1): ' + numbers.slice(-2, -1));
+        console.log('slice(-2, 0): ' + numbers.slice(-2, 0));
+        numbers = [0, 1, 2, 3, 4, 5];
+        console.log(numbers.join(', '));
+        console.log('splice(0, 2): ' + numbers.splice(0, 2));
+        console.log(numbers);
+        console.log('splice(0, 2, "two", "three"): ' + numbers.splice(0, 2, 'two', 'three'));
+        console.log(numbers);
+        console.log('splice(0, 0, 0, 1): ' + numbers.splice(0, 0, 0, 1));
+        console.log(numbers);
+        console.log('splice(6, 0, 6, 7): ' + numbers.splice(6, 0, 6, 7));
+        console.log(numbers);
+        console.log('splice(8, 0, [8, 9]): ' + numbers.splice(8, 0, [8, 9]));
+        console.log(numbers);
+        numbers = [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5];
+        console.log(numbers);
+        console.log('indexOf(1): ' + numbers.indexOf(1));
+        console.log('indexOf(1, 4): ' + numbers.indexOf(1, 4));
+        console.log('indexOf(1, 8): ' + numbers.indexOf(1, 8));
+        console.log('lastIndexOf(4): ' + numbers.lastIndexOf(4));
+        console.log('lastIndexOf(4, 9): ' + numbers.lastIndexOf(4, 9));
+        console.log('lastIndexOf(4, 3): ' + numbers.lastIndexOf(4, 3));
+        console.log('Array.isArray(numbers): ' + Array.isArray(numbers));
+    </script>
+</body>
+</html>

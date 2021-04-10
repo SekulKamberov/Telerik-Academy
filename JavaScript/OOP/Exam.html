@@ -1,0 +1,534 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Exam</title>
+</head>
+<body>
+    <script>
+        function solve() {
+            var module = (function () {
+                var item,
+                    book,
+                    media,
+                    catalog,
+                    bookCatalog,
+                    mediaCatalog,
+                    validator,
+                    CONSTANTS = {
+                        TEXT_MIN_LENGTH: 2,
+                        TEXT_MAX_LENGTH: 40,
+                        IMDB_MIN_RATING: 1,
+                        IMDB_MAX_RATING: 5,
+                        MAX_NUMBER: 9007199254740992,
+                        VALID_ISBN_LENGTH_ONE: 10,
+                        VALID_ISBN_LENGTH_TWO: 13,
+                        GENRE_MIN_LENGTH: 2,
+                        GENRE_MAX_LENGTH: 20,
+                        ITEM_MIN_LENGTH: 2,
+                        ITEM_MAX_LENGTH: 40,
+                        CATALOG_MIN_LENGTH: 2,
+                        CATALOG_MAX_LENGTH: 40,
+                        MEDIA_MIN_LENGTH: 1,
+                        MEDIA_MAX_LENGTH: 5,
+                    };
+
+                item = (function () {
+                    var currentItemId = 0,
+                        item = Object.create({});
+
+                    Object.defineProperty(item, 'init', {
+                        value: function (name, description) {
+                            this.description = description;
+                            this.name = name;
+                            this._id = ++currentItemId;
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(item, 'id', {
+                        get: function () {
+                            return this._id;
+                        }
+                    });
+
+                    Object.defineProperty(item, 'name', {
+                        get: function () {
+                            return this._name;
+                        },
+                        set: function (val) {
+                            validator.validateString(val, 'Item name', CONSTANTS.ITEM_MIN_LENGTH, CONSTANTS.ITEM_MAX_LENGTH);
+                            this._name = val;
+                        }
+                    });
+
+                    Object.defineProperty(item, 'description', {
+                        get: function () {
+                            return this._description;
+                        },
+                        set: function (val) {
+                            validator.validateNonEmptyString(val, 'Item description');
+                            this._description = val;
+                        }
+                    });
+
+                    return item;
+                }());
+
+                book = (function (parent) {
+                    var book = Object.create(parent);
+
+                    Object.defineProperty(book, 'init', {
+                        value: function (name, isbn, genre, description) {
+                            parent.init.call(this, name, description);
+                            this.isbn = isbn;
+                            this.genre = genre;
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(book, 'isbn', {
+                        get: function () {
+                            return this._isbn;
+                        },
+                        set: function (val) {
+                            validator.validateStringNoLength(val, 'Book isbn');
+                            validator.validateIsbnLength(val, 'Book isbn');
+                            validator.validateIfNumber(val, 'Book isbn');
+                            this._isbn = val;
+                        }
+                    });
+
+                    Object.defineProperty(book, 'genre', {
+                        get: function () {
+                            return this._genre;
+                        },
+                        set: function (val) {
+                            validator.validateString(val, 'Genre isbn', CONSTANTS.GENRE_MIN_LENGTH, CONSTANTS.GENRE_MAX_LENGTH);
+                            this._genre = val;
+                        }
+                    });
+
+                    return book;
+                }(item));
+
+                media = (function (parent) {
+                    var media = Object.create(parent);
+
+                    Object.defineProperty(media, 'init', {
+                        value: function (name, rating, duration, description) {
+                            parent.init.call(this, name, description);
+                            this.duration = duration;
+                            this.rating = rating;
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(media, 'duration', {
+                        get: function () {
+                            return this._duration;
+                        },
+                        set: function (val) {
+                            validator.validatePositiveNumber(val, 'Media duration');
+                            this._duration = val;
+                        }
+                    });
+
+                    Object.defineProperty(media, 'rating', {
+                        get: function () {
+                            return this._rating;
+                        },
+                        set: function (val) {
+                            validator.validatePositiveNumber(val, 'Media rating');
+                            validator.validateNumberRange(val, 'Media rating', CONSTANTS.MEDIA_MIN_LENGTH, CONSTANTS.MEDIA_MAX_LENGTH);
+                            this._rating = val;
+                        }
+                    });
+
+                    return media;
+                }(item));
+
+                catalog = (function () {
+                    var currentCatalogId = 0,
+                        catalog = Object.create({});
+
+                    Object.defineProperty(catalog, 'init', {
+                        value: function (name) {
+                            this._items = [];
+                            this.name = name;
+                            this._id = ++currentCatalogId;
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(catalog, 'id', {
+                        get: function () {
+                            return this._id;
+                        }
+                    });
+
+                    Object.defineProperty(catalog, 'name', {
+                        get: function () {
+                            return this._name;
+                        },
+                        set: function (val) {
+                            validator.validateString(val, 'Catalog name', CONSTANTS.CATALOG_MIN_LENGTH, CONSTANTS.CATALOG_MAX_LENGTH);
+                            this._name = val;
+                        }
+                    });
+
+                    Object.defineProperty(catalog, 'add', {
+                        value: function (items) {
+                            throw new Error('Undefiend');
+
+                            validator.validateIfUndefined(items, 'Catalog add item parameter');
+
+                            if (items instanceof Array) {
+                                if (items.length === 0) {
+                                    throw new Error('Catalog Add - Empty array!');
+                                }
+
+                                for (var i in items) {
+                                    var item = items[i];
+                                    validator.validateIfUndefined(item, 'Catalog add item parameter');
+                                    validator.validateIfInstance(item);
+                                }
+
+                                for (var i in items) {
+                                    var item = items[i];
+
+                                    this._items.push(item);
+                                }
+                            } else {
+                                for (var i in arguments) {
+                                    var item = arguments[i];
+                                    validator.validateIfUndefined(item, 'Catalog add item parameter');
+                                    validator.validateIfInstance(item);
+                                }
+
+                                for (var i in arguments) {
+                                    var item = arguments[i];
+                                    this._items.push(item);
+                                }
+                            }
+
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(catalog, 'find', {
+                        value: function (id) {
+                            var i, len;
+                            validator.validateIfUndefined(id, 'Catalog get item parameter id');
+                            validator.validateIfNumber(id, 'Catalog get item paratemeter id');
+
+                            if (typeof id === 'number') {
+                                var foundIndex = indexOfElementWithIdInCollection(this._items, id);
+                                if (foundIndex < 0) {
+                                    return null;
+                                }
+
+                                return this._items[foundIndex];
+                            } else {
+                                var arr = [];
+                                return arr;
+                                //throw new Error('Options');
+                            }
+                        }
+                    });
+
+                    Object.defineProperty(catalog, 'search', {
+                        value: function (pattern) {
+                            var i, len, arr = [];
+                            validator.validateIfUndefined(id, 'Catalog get item parameter id');
+                            validator.validateIfNumber(id, 'Catalog get item paratemeter id');
+
+                            validator.validateNonEmptyString(pattern);
+
+                            return arr;
+                            //throw new Error('Options');
+                        }
+                    });
+
+                    return catalog;
+                }());
+
+                bookCatalog = (function (parent) {
+                    var bookCatalog = Object.create(parent);
+
+                    Object.defineProperty(bookCatalog, 'init', {
+                        value: function (name) {
+                            parent.init.call(this, name);
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(bookCatalog, 'add', {
+                        value: function (items) {
+                            parent.add.call(this, items);
+
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(bookCatalog, 'find', {
+                        value: function (id) {
+                            parent.find.call(this, id);
+
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(bookCatalog, 'getGenres', {
+                        value: function () {
+                            var genres = [],
+                                i,
+                                j,
+                                length,
+                                book,
+                                genre,
+                                genresLength,
+                                hasThisGenre;
+
+                            for (i = 0, length = this._items.length; i < length; i+=1) {
+                                book = _items[i];
+                                genre = book._genre.toLowerCase();
+                                hasThisGenre = false;
+                                for (j = 0, genresLength = genres.length; j < genresLength; j += 1) {
+                                    if (!genres[j] === genre) {
+                                        hasThisGenre = true;
+                                        break;
+                                    }
+                                }
+
+                                if (hasThisGenre === false) {
+                                    genres.push(genre);
+                                }
+                            }
+
+                            return genres;
+                        }
+                    });
+
+                    Object.defineProperty(bookCatalog, 'search', {
+                        value: function (pattern) {
+                            parent.search.call(this, pattern);
+
+                            return this;
+                        }
+                    });
+
+                    return bookCatalog;
+                }(catalog));
+
+                mediaCatalog = (function (parent) {
+                    var mediaCatalog = Object.create(parent);
+
+                    Object.defineProperty(mediaCatalog, 'init', {
+                        value: function (name) {
+                            parent.init.call(this, name);
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(mediaCatalog, 'add', {
+                        value: function (items) {
+                            parent.add.call(this, items);
+
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(mediaCatalog, 'find', {
+                        value: function (id) {
+                            parent.find.call(this, id);
+
+                            return this;
+                        }
+                    });
+
+                    Object.defineProperty(mediaCatalog, 'getTop', {
+                        value: function (count) {
+                            validator.validateIfNumber(count);
+                            if (count < 1) {
+                                throw new Error('');
+                            }
+
+                            return [];
+                        }
+                    });
+
+                    Object.defineProperty(mediaCatalog, 'search', {
+                        value: function (pattern) {
+                            parent.search.call(this, pattern);
+
+                            return this;
+                        }
+                    });
+
+                    return mediaCatalog;
+                }(catalog));
+
+                function indexOfElementWithIdInCollection(collection, id) {
+                    var i, len;
+                    for (i = 0, len = collection.length; i < len; i+=1) {
+                        if (collection[i].id == id) {
+                            return i;
+                        }
+                    }
+
+                    return -1;
+                }
+
+                validator = {
+                    validateIfUndefined: function (val, name) {
+                        name = name || 'Value';
+                        if (val === undefined) {
+                            throw new Error(name + ' cannot be undefined');
+                        }
+                    },
+                    validateIfObject: function (val, name) {
+                        name = name || 'Value';
+                        if (typeof val !== 'object') {
+                            throw new Error(name + ' must be an object');
+                        }
+                    },
+                    validateIfItem: function (item) {
+                        validator.validateIfObject(item, 'Catalog add item parameter');
+                        validator.validateIfUndefined(item.id, 'Catalog add item parameter must have id');
+                        validator.validateIfUndefined(item.name, 'Catalog add item parameter must have name');
+                    },
+                    validateIfInstance: function (item) {
+                        if (!(this.constructor.name.toLowerCase() === item.constructor.name.toLowerCase())) {
+                            throw new Error('Not a instance!');
+                        }
+                    },
+                    validateIfNumber: function (val, name) {
+                        name = name || 'Value';
+                        if (typeof val !== 'number') {
+                            throw new Error(name + ' must be a number');
+                        }
+                    },
+                    validateString: function (val, name, min, max) {
+                        name = name || 'Value';
+                        this.validateIfUndefined(val, name);
+
+                        if (typeof val !== 'string') {
+                            throw new Error(name + ' must be a string');
+                        }
+
+                        this.validateItemLength(val, name, min, max);
+                    },
+                    validateStringNoLength: function (val, name) {
+                        name = name || 'Value';
+                        this.validateIfUndefined(val, name);
+
+                        if (typeof val !== 'string') {
+                            throw new Error(name + ' must be a string');
+                        }
+                    },
+                    validateIsbnLength: function (val, name) {
+                        name = name || 'Value';
+
+                        if (val.length != CONSTANTS.VALID_ISBN_LENGTH_ONE
+                            && CONSTANTS.VALID_ISBN_LENGTH_TWO != val.length) {
+                            throw new Error(name + ' must be ' + CONSTANTS.VALID_ISBN_LENGTH_ONE +
+                                ' or ' + CONSTANTS.VALID_ISBN_LENGTH_TWO + ' symbols');
+                        }
+                    },
+                    validateItemLength: function (val, name, min, max) {
+                        name = name || 'Value';
+
+                        if (val.length < min
+                            || max < val.length) {
+                            throw new Error(name + ' length must be between ' + min +
+                                ' and ' + max + ' symbols');
+                        }
+                    },
+                    validateNonEmptyString: function (val, name) {
+                        name = name || 'Value';
+                        this.validateIfUndefined(val, name);
+
+                        if (typeof val !== 'string') {
+                            throw new Error(name + ' must be a string');
+                        }
+
+                        if (!val || val === '') {
+                            throw new Error(name + ' must not be empty');
+                        }
+                    },
+                    validatePositiveNumber: function (val, name) {
+                        name = name || 'Value';
+                        this.validateIfUndefined(val, name);
+                        this.validateIfNumber(val, name);
+
+                        if (val <= 0) {
+                            throw new Error(name + ' must be positive number');
+                        }
+                    },
+                    validateNumberRange: function (val, name, min, max) {
+                        name = name || 'Value';
+                        this.validateIfUndefined(val, name);
+                        this.validateIfNumber(val, name);
+
+                        if (val < min || max < val) {
+                            throw new Error(name + ' must be in range [' + min + ', ' + max + ']');
+                        }
+                    },
+                    validateImdbRating: function (val) {
+                        this.validateIfUndefined(val, 'IMDB Rating');
+                        this.validateIfNumber(val, 'IMDB Rating');
+
+                        if (val < CONSTANTS.IMDB_MIN_RATING || CONSTANTS.IMDB_MAX_RATING < val) {
+                            throw new Error('IMDB Rating must be between '
+                                + CONSTANTS.IMDB_MIN_RATING
+                                + ' and ' + CONSTANTS.IMDB_MAX_RATING);
+                        }
+                    },
+                    validateId: function (id) {
+                        this.validateIfUndefined(id, 'Object id');
+                        if (typeof id !== 'number') {
+                            id = id.id;
+                        }
+
+                        this.validateIfUndefined(id, 'Object must have id');
+                        return id;
+                    },
+                    validatePageAndSize: function (page, size, maxElements) {
+                        this.validateIfUndefined(page);
+                        this.validateIfUndefined(size);
+                        this.validateIfNumber(page);
+                        this.validateIfNumber(size);
+
+                        if (page < 0) {
+                            throw new Error('Page must be greather than or equal to 0');
+                        }
+
+                        this.validatePositiveNumber(size, 'Size');
+
+                        if (page * size > maxElements) {
+                            throw new Error('Page * size will not return any elements from collection');
+                        }
+                    }
+                };
+
+                return {
+                    getBook: function (name, isbn, genre, description) {
+                        return Object.create(book).init(name, isbn, genre, description);
+                    },
+                    getMedia: function (name, rating, duration, description) {
+                        return Object.create(media).init(name, rating, duration, description);
+                    },
+                    getBookCatalog: function (name) {
+                        return Object.create(bookCatalog).init(name);
+                    },
+                    getMediaCatalog: function (name) {
+                        return Object.create(mediaCatalog).init(name);
+                    }
+                };
+            }());
+
+            return module;
+        }
+    </script>
+</body>
+</html>

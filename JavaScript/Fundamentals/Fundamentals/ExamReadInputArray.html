@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    js-1
+    <script>
+        var input = [
+            [
+                '3 5',
+                'dr dl dr ur ul',
+                'dr dr ul ur ur',
+                'dl dr ur dl ur',
+            ],
+            [
+                '3 5',
+                'dr dl dl ur ul',
+                'dr dr ul ul ur',
+                'dl dr ur dl ur',
+            ],
+        ];
+
+        input.forEach(function (test) {
+            console.log(solve(test));
+        });
+
+        function solve(args) {
+            var rowsCols = args[0].split(' '),
+                bounds = {
+                    rows: +rowsCols[0],
+                    cols: +rowsCols[1]
+                },
+                matrix = args.slice(1)
+                    .map(function (line) {
+                        return line.split(' ');
+                    }),
+                row = 0,
+                col = 0,
+                sum = 0,
+                direction;
+
+            while (true) {
+                if (!matrix[row] || !matrix[row][col]) {
+                    return 'success with ' + sum;
+                }
+
+                if (matrix[row][col] === 'visited') {
+                    return 'failed at (' + row + ', ' + col + ')';
+                }
+
+                sum += (1 << row) + col;
+
+                direction = matrix[row][col];
+
+                matrix[row][col] = 'visited';
+
+                if (direction === 'ul') {
+                    row += -1;
+                    col += -1;
+                } else if (direction === 'ur') {
+                    row += -1;
+                    col += 1;
+                } else if (direction === 'dl') {
+                    row += 1;
+                    col += -1;
+                } else if (direction === 'dr') {
+                    row += 1;
+                    col += 1;
+                }
+            }
+
+            return matrix;
+        }
+
+    </script>
+</body>
+</html>

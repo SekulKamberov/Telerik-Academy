@@ -1,0 +1,87 @@
+1. What database models do you know?
+ - Hierarchical  (tree)
+ - Network / graph
+ - Relational (table)
+ - Object-oriented
+
+2. Which are the main functions performed by a Relational Database Management System (RDBMS)?
+ - Creating / altering / deleting tables and relationships between them (database schema)
+ - Adding, changing, deleting, searching and retrieving of data stored in the tables
+ - Support for the SQL language
+ - Transaction management (optional)
+
+3. Define what is "table" in database terms.
+ - Database tables consist of data, arranged in rows and columns
+ - All rows have the same structure
+ - Columns have name and type (number, string, date, image, or other)
+
+4. Explain the difference between a primary and a foreign key.
+ - Primary key is a column of the table that uniquely identifies its rows (usually its is a number)
+ - The foreign key is an identifier of a record located in another table (usually its primary key)
+
+5. Explain the different kinds of relationships between tables in relational databases.
+ - one-to-many (or many-to-one) : A single record in the first table has many corresponding records in the second table
+ - many-to-many : Records in the first table have many correspon-ding records in the second one and vice versa. Implemented through additional table
+ - one-to-one : single record in a table corresponds to a single record in the other table. Used to model inheritance between tables
+
+6. When is a certain database schema normalized? What are the advantages of normalized databases?
+ 
+ 1-st Normal Form
+  - Data is stored in tables
+  - Fields in the rows are atomic (inseparable) values
+  - There are no repetitions within a single row
+  - A primary key is defined for each table
+ 2-nd Normal Form
+  - Retains all requirements of 1-st Normal Form
+  - There are no columns that do not depend on part of the primary key (if it consists of several columns)
+ 3-rd Normal Form
+  - Retains all requirements of 2-nd Normal Form
+  - The only dependencies between columns are of type "a column depends on the PK"
+ 4-th Normal Form
+  - Retains all requirements of 3-rd Normal Form
+  - There is one column at most in each table that can have many possible values for a single key (multi-valued attribute)
+
+ - Normalization of the relational schema removes repeating data.
+
+7. What are database integrity constraints and when are they used?
+ Integrity constraints - ensure data integrity in the database tables. Enforce data rules which cannot be violated.
+ Primary key constraint - Ensures that the primary key of a table has unique value for each table row.
+ Unique key constraint - Ensures that all values in a certain column (or a group of columns) are unique.
+ Foreign key constraint - Ensures that the value in given column is a key from another table
+ Check constraint - Ensures that values in a certain column meet some predefined condition
+
+8. Point out the pros and cons of using indexes in a database.
+ - Indices speed up searching of values in a certain column or group of columns. Usually implemented as B-trees.
+ - Indices can be built-in the table (clustered) or stored externally (non-clustered).
+ - Adding and deleting records in indexed tables is slower! Indices should be used for big tables only (e.g. 50 000 rows)
+
+9. What's the main purpose of the SQL language?
+ - manipulation of relational databases
+supports: 
+ - Creating, altering, deleting tables and other objects in the database. 
+ - Searching, retrieving, inserting, modifying and deleting table data (rows)
+
+10. What are transactions used for? Give an example.
+ - sequence of database operations which are executed as a single unit. Either all of them execute successfully or none of them is executed  at all.
+Example: A bank transfer from one account into another (withdrawal + deposit). If either the withdrawal or the deposit fails the entire operation should be cancelled.
+
+11. What is a NoSQL database?
+ Use document-based model (non-relational).
+ Schema-free document storage:
+  - Still support CRUD operations(create, read, update, delete)
+  - Still support indexing and querying
+  - Still supports concurrency  and transactions
+ Highly optimized for append / retrieve
+ Great performance and scalability
+ NoSQL == “No SQL” or “Not Only SQL”?
+
+12. Explain the classical non-relational data models.
+ A NoSQL or Not Only SQL database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular  relations used in relational databases. Motivations for this approach include simplicity of design, horizontal scaling and finer control  over availability. The data structure (e.g. key-value, graph, or document) differs from the RDBMS, and therefore some operations are  faster in NoSQL and some in RDBMS. There are differences though, and the particular suitability of a given NoSQL DB depends on the problem  it must solve.
+
+13. Give few examples of NoSQL databases and their pros and cons.
+ Redis - Ultra-fast in-memory data structures server.
+ MongoDB - Mature and powerful JSON-document database.
+ CouchDB - JSON-based document database with REST API.
+ Cassandra - Distributed wide-column database.
+
+ Data stored as documents, Single entity (document) is a single record, Documents do not have a fixed structure.

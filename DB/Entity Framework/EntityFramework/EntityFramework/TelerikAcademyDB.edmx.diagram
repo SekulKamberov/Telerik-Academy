@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="000c036a8ad24e759c031ed095430d28" Name="Diagram1">
+        <EntityTypeShape EntityType="TelerikAcademy.Data.Address" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.Department" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.Employee" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.GROUP" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.Project" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.Town" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.User" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.WorkHour" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TelerikAcademy.Data.ran" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Addresses_Towns" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Employees_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Departments_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Employees_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_EmpID" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Employees_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.FK_Users_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="TelerikAcademy.Data.EmployeesProjects" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

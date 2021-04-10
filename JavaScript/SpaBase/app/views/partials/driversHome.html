@@ -1,0 +1,27 @@
+﻿<div>
+    <h1>
+        Latest drivers
+    </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Upcoming Trips</th>
+                <th>Total Trips</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="driver in latestDrivers">
+                <td>
+                    <a href="#/drivers/{{driver.id}}">{{driver.name}}</a>
+                </td>
+                <td>
+                    {{driver.numberOfUpcomingTrips}}
+                </td>
+                <td>
+                    {{driver.numberOfTotalTrips}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

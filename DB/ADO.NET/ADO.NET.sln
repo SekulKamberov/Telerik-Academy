@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET", "ADO.NET\ADO.NET.csproj", "{C126D12E-A011-4B0A-950C-2BF387D92FD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.CategoriesTableRows", "01.CategoriesTableRows\01.CategoriesTableRows.csproj", "{AC275052-C441-424E-AA50-C1C18ED91261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. RetriveName", "02. RetriveName\02. RetriveName.csproj", "{22089E07-3479-4FFC-A4DC-DDBC3A2DB393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. JoinTables", "03. JoinTables\03. JoinTables.csproj", "{9D5E9E88-F0B5-43E9-BA75-AA6DBC89838F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. AddProduct XML Config", "04. AddProduct\04. AddProduct XML Config.csproj", "{DBD647D3-FE43-4AD3-9E97-27DB96950836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. RetriveImages Settings Config", "05. RetriveImages\05. RetriveImages Settings Config.csproj", "{00B651D4-6ED0-45C7-9520-4C153AB6B17D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-07. ReadWriteExcell", "06. ReadExcell\06-07. ReadWriteExcell.csproj", "{E3FDFF5D-CB73-47FB-BF75-DEE91171E71C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C126D12E-A011-4B0A-950C-2BF387D92FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C126D12E-A011-4B0A-950C-2BF387D92FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C126D12E-A011-4B0A-950C-2BF387D92FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C126D12E-A011-4B0A-950C-2BF387D92FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC275052-C441-424E-AA50-C1C18ED91261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC275052-C441-424E-AA50-C1C18ED91261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC275052-C441-424E-AA50-C1C18ED91261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC275052-C441-424E-AA50-C1C18ED91261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22089E07-3479-4FFC-A4DC-DDBC3A2DB393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22089E07-3479-4FFC-A4DC-DDBC3A2DB393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22089E07-3479-4FFC-A4DC-DDBC3A2DB393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22089E07-3479-4FFC-A4DC-DDBC3A2DB393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5E9E88-F0B5-43E9-BA75-AA6DBC89838F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5E9E88-F0B5-43E9-BA75-AA6DBC89838F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5E9E88-F0B5-43E9-BA75-AA6DBC89838F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5E9E88-F0B5-43E9-BA75-AA6DBC89838F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD647D3-FE43-4AD3-9E97-27DB96950836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD647D3-FE43-4AD3-9E97-27DB96950836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD647D3-FE43-4AD3-9E97-27DB96950836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD647D3-FE43-4AD3-9E97-27DB96950836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B651D4-6ED0-45C7-9520-4C153AB6B17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B651D4-6ED0-45C7-9520-4C153AB6B17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B651D4-6ED0-45C7-9520-4C153AB6B17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B651D4-6ED0-45C7-9520-4C153AB6B17D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FDFF5D-CB73-47FB-BF75-DEE91171E71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FDFF5D-CB73-47FB-BF75-DEE91171E71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FDFF5D-CB73-47FB-BF75-DEE91171E71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FDFF5D-CB73-47FB-BF75-DEE91171E71C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

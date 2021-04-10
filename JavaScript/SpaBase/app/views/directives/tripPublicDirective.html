@@ -1,0 +1,15 @@
+﻿<tr>
+    <td>{{index}}</td>
+    <td>
+        <a href="#/drivers/{{tripModel.driverId}}">{{tripModel.driverName | takeNameFromMailFilter}} ({{tripModel.driverName}})</a>
+    </td>
+    <td>
+        {{tripModel.from}}
+    </td>
+    <td>
+        {{tripModel.to}}
+    </td>
+    <td>
+        <a href="#/trips/{{tripModel.id}}">{{tripModel.departureDate}}</a>
+    </td>
+</tr>

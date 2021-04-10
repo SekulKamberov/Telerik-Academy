@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<students xmlns="https://telerikacademy.com/students">
+  <student>
+    <name>Pesho</name>
+    <sex>male</sex>
+    <birthdate>2001-11-11</birthdate>
+    <phone>12345354</phone>
+    <email>pesho@abv.bg</email>
+    <speciality>economy</speciality>
+    <facultynumber>12345</facultynumber>
+    <exams>
+      <exam>
+        <name>Math</name>
+        <tutor>Goshov</tutor>
+        <score>3</score>
+      </exam>
+      <exam>
+        <name>Economics</name>
+        <tutor>Toshov</tutor>
+        <score>4</score>
+      </exam>
+    </exams>
+    <enrollmentinformation>
+      <name>Math</name>
+      <score>5</score>
+      <date>2000-09-09</date>
+    </enrollmentinformation>
+    <endorsments>
+      <name>Kolev</name>
+      <letter>Cool</letter>
+      <date>2000-09-08</date>
+    </endorsments>
+  </student>
+  <student>
+    <name>Gosho</name>
+    <sex>Male</sex>
+    <birthdate>2000-12-12</birthdate>
+    <phone>3332545</phone>
+    <email>goshov@abv.bg</email>
+    <speciality>SoftTech</speciality>
+    <facultynumber>455454</facultynumber>
+    <exams>
+      <exam>
+        <name>History of ST</name>
+        <tutor>Peshov</tutor>
+        <score>4</score>
+      </exam>
+      <exam>
+        <name>Math 101</name>
+        <tutor>Gogov</tutor>
+        <score>7</score>
+      </exam>
+    </exams>
+    <enrollmentinformation>
+      <name>Math</name>
+      <score>5</score>
+      <date>2000-09-09</date>
+    </enrollmentinformation>
+    <endorsments>
+      <name>Kolev</name>
+      <letter>Cool</letter>
+      <date>2000-09-08</date>
+    </endorsments>
+  </student>
+</students>
+

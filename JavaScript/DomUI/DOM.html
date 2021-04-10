@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DOM</title>
+    <style>
+        .collored{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <ul id="firstList">
+        <li name="item" id="firstLi">
+            <a id="firstId" href="#">1.1</a>
+        </li>
+        <li name="item">
+            <a id="firstId" href="#">2.1</a>
+        </li>
+        <li>
+            <a id="secondId" href="#">3.1</a>
+        </li>
+        <li>
+            <a href="#">4.1</a>
+        </li>
+        <li class="firstClass">
+            <a href="#">5.1</a>
+        </li>
+    </ul>
+    <hr>
+    <ul>
+        <li>
+            <a href="#">1.2</a>
+        </li>
+        <li>
+            <a href="#">2.2</a>
+        </li>
+        <li>
+            <a href="#">3.2</a>
+        </li>
+        <li>
+            <a href="#">4.2</a>
+        </li>
+        <li>
+            <a href="#">5.2</a>
+        </li>
+    </ul>
+
+    <form id="firstForm"></form>
+    <form id="secondForm"></form>
+    <script>
+        console.log('===== Select html =====');
+        console.log(document.documentElement);
+        console.log('===== Select body =====');
+        console.log(document.body);
+        console.log('===== innerHtml =====');
+        console.log(document.body.innerHTML);
+        console.log('===== outerHtml =====');
+        console.log(document.body.outerHTML);
+        console.log('===== innerText =====');
+        console.log(document.body.innerText);
+        console.log('===== getElementById =====');
+        var li = document.getElementById('firstId');
+        console.log(li);
+        console.log('===== getElementsByTagName =====');
+        var list = document.getElementsByTagName('li');
+        console.log(list);
+        console.log('===== getElementsByName =====');
+        list = document.getElementsByName('item');
+        console.log(list);
+        console.log('===== getElementsByClassName =====');
+        list = document.getElementsByClassName('firstClass');
+        console.log(list);
+
+        console.log('===== querySelector =====');
+        li = document.querySelector('#firstId');
+        console.log(li);
+        console.log('===== querySelectorAll =====');
+        li = document.querySelectorAll('#firstId');
+        console.log(li);
+        console.log('===== querySelectorAll =====');
+        li = document.querySelectorAll('#firstList > li');
+        console.log(li);
+
+        console.log('===== links =====');
+        var links = document.links;
+        console.log(links);
+        console.log('===== forms =====');
+        var forms = document.forms;
+        console.log(forms);
+
+
+        console.log('===== Nested selection =====');
+        var nested = document.getElementById('firstLi').getElementsByTagName('a');
+        console.log(nested);
+
+        console.log('===== NodeList =====');
+        list = document.querySelectorAll('#firstList > li');
+
+        for (var i = 0; i < list.length; i++) {
+            console.log(list[i]);
+        }
+
+        console.log('===== NodeList =====');
+        list = document.getElementsByTagName('a');
+
+        for (var i = 0; i < list.length; i++) {
+            console.log(list[i]);
+        }
+
+        console.log('===== liveNodeLIst/staticNodeList =====');
+        var liveNodeList = document.getElementsByTagName('li');
+        console.log('liveNodeListLength: ' + liveNodeList.length);
+        var staticNodeList = document.querySelectorAll('li');
+        console.log('staticNodeListLength: ' + staticNodeList.length);
+
+        var newLi = document.createElement('li'),
+            newLi2 = document.createElement('li');
+        document.getElementById('firstList').appendChild(newLi);
+        document.getElementById('firstList').appendChild(newLi2);
+
+        console.log('liveNodeListLength: ' + liveNodeList.length);
+        console.log('staticNodeListLength: ' + staticNodeList.length);
+    </script>
+</body>
+</html>

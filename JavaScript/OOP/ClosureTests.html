@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JS - Closure Tests</title>
+</head>
+<body>
+    <script>
+        var generator = (function () {
+            var counter = 0,
+                result;
+            result = {
+                generateId: function () {
+                    return counter += 1;
+                },
+                lastIdGenerated: function () {
+                    return counter;
+                }
+            }
+
+            return result;
+        }());
+
+        var Person = (function (idGenerator) {
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+                this.id = idGenerator.generateId();
+            }
+
+            return Person;
+
+        }(generator));
+
+        var Student = (function (idGenerator) {
+            function Student(name, entranceExamScore) {
+                this.name = name;
+                this.entranceExamScore = entranceExamScore;
+                this.id = idGenerator.generateId();
+            }
+
+            return Student;
+
+        }(generator));
+
+        console.log('=========================================');
+        console.log('Generated ID: ' + generator.generateId());
+        console.log('Generated ID: ' + generator.generateId());
+        console.log('Generated ID: ' + generator.generateId());
+        console.log('Generated ID: ' + generator.generateId());
+        console.log('Last ID: ' + generator.lastIdGenerated());
+        console.log('Last ID: ' + generator.lastIdGenerated());
+        console.log('Generated ID: ' + generator.generateId());
+
+        console.log('=========================================');
+        console.log(new Person('Pesho Peshov', 21));
+        console.log(new Student('Gosho Goshov', 95));
+    </script>
+</body>
+</html>

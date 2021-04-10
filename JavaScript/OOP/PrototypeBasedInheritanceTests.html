@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Prototype Based Inheritance Tests</title>
+</head>
+<body>
+    <script>
+        var animal = {
+            toString: function () {
+                return 'I am animal!';
+            }
+        }
+
+        //1
+        //var dog = {
+        //    name: 'Max'
+        //}
+        //dog.__proto__ = animal;
+        //console.log(dog.toString());
+
+        //2
+        //function createObject(object) {
+        //    function Constructor() { };
+        //    Constructor.prototype = object;
+        //    return new Constructor();
+        //}
+        //var dog = createObject(animal);
+        //dog.name = 'Tommy';
+        //console.log(dog.toString());
+
+        //3
+        //var dog = Object.create(animal);
+        //dog.name = 'Tommy';
+        //console.log(dog.toString());
+        ////console.log(Object.getPrototypeOf(dog).toString());
+
+        //4
+        //var dog = Object.defineProperties(animal, {
+        //    name: {
+        //        value: 'Max'
+        //    },
+        //    age: {
+        //        value: 3,
+        //    },
+        //    bark: {
+        //        value: function () {
+        //            console.log(this.name + ' BARK BARK');
+        //        }
+        //    }
+        //});
+        //console.log(dog.name + ' => ' + dog.toString());
+        //console.log(dog.bark());
+
+        //5
+        var animal = (function () {
+            var animal = {
+                init: function (name, age) {
+                    this.name = name;
+                    this.age = age;
+                    return this;
+                },
+                get name() {
+                    return this._name;
+                },
+                set name(value) {
+                    if(value.length < 3) {
+                        throw new Error('Name is to short!');
+                    }
+                    this._name = value;
+                },
+                toString: function () {
+                    return 'Name: ' + this.name + ' Age: ' + this.age;
+                },
+            }
+
+            return animal;
+        }());
+
+        var cat = (function (parentClass) {
+            var cat = Object.create(parentClass);
+            
+            cat.init = function (name, age, color) {
+                parentClass.init.call(this, name, age);
+                this.color = color;
+                return this;
+            }
+
+            cat.toString = function () {
+                var base = parentClass.toString.call(this);
+
+                return base + ' Color: ' + this.color;
+            }
+
+            return cat;
+        }(animal));
+
+        var someAnimal = Object.create(animal).init('Max', 5);
+        console.log(someAnimal.toString());
+
+        var someCat = Object.create(cat).init('Koko', 10, 'green');
+        console.log(someCat.toString());
+
+        // 7
+        var vehicle = (function () {
+            var vehicle = {};
+
+            Object.defineProperty(vehicle, 'brand', {
+                get: function () {
+                    return this._brand;
+                },
+                set: function (value) {
+                    if (!value) {
+                        throw new Error('Brand is required!');
+                    }
+
+                    this._brand = value;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(vehicle, 'init', {
+                value: function (brand) {
+                    this.brand = brand;
+                    return this;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(vehicle, 'move', {
+                value: function () {
+                    return this.brand + ' is mooving...';
+                },
+                enumerable: true
+            });
+
+            return vehicle;
+        }());
+
+        var car = (function (parentClass) {
+            var car = Object.create(parentClass);
+
+            Object.defineProperty(car, 'wheels', {
+                get: function () {
+                    return this._wheels;
+                },
+                set: function (value) {
+                    if (value < 3 || 4 < value) {
+                        throw new Error('Car has 3 or 4 wheels!');
+                    }
+
+                    this._wheels = value;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(car, 'init', {
+                value: function (brand, wheels) {
+                    parentClass.init.call(this, brand);
+                    this.wheels = wheels;
+                    return this;
+                },
+                enumerable: true
+            });
+
+            Object.defineProperty(car, 'move', {
+                value: function () {
+                    var base = parentClass.move.call(this);
+                    return base + ' on ' + this.wheels + ' wheels.';
+                },
+                enumerable: true
+            });
+
+            return car;
+        }(vehicle));
+
+        var someVehicle = Object.create(vehicle).init('BMW');
+        console.log(someVehicle.move());
+
+        var someCar = Object.create(car).init('Audi', 4);
+        console.log(someCar.move());
+
+        for (var key in someCar) {
+            console.log(key + ' ' + someCar.hasOwnProperty(key));
+        }
+
+        console.log('===== duck typing ====='); // the method move needs 'brand' and 'wheels'
+        console.log(car.move.call({ brand: 'Lada', wheels: 4 }));
+        console.log(car.move.call({ wheels: 4 })); // work with 'wheels' only
+
+        var person1 = { name: 'AAAA', age: 111, size: '1111' };
+        console.log(person1);
+        var update = function (name, age, size) {
+            this.name = name;
+            this.age = age;
+            this.size = size;
+        };
+
+        update.call(person1, 'BBBB', 222, '2222');
+        console.log(person1);
+        
+        update.apply(person1, ['CCCC', 333, '3333']);
+        console.log(person1);
+
+        var args = ['DDDD', 44, '44444'],
+            dispatch = function (obj, functionName, args) {
+            functionName.apply(obj, args);
+        };
+        dispatch(person1, update, args);
+        console.log(person1);
+    </script>
+</body>
+</html>

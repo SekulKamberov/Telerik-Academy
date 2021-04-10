@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Models", "UniversitySystem.Models\UniversitySystem.Models.csproj", "{18F05170-A0FC-49F1-A88C-4084461D8C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Data", "UniversitySystem.Data\UniversitySystem.Data.csproj", "{443A8076-C2ED-4F2B-97D9-9DE25E3A048E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.ConsoleClient", "UniversitySystem.ConsoleClient\UniversitySystem.ConsoleClient.csproj", "{7504A378-2C82-42F9-8FBB-42D205CC85BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D0F2CC98-31C8-47FC-AD79-991BD507A052}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18F05170-A0FC-49F1-A88C-4084461D8C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F05170-A0FC-49F1-A88C-4084461D8C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F05170-A0FC-49F1-A88C-4084461D8C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F05170-A0FC-49F1-A88C-4084461D8C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443A8076-C2ED-4F2B-97D9-9DE25E3A048E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443A8076-C2ED-4F2B-97D9-9DE25E3A048E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443A8076-C2ED-4F2B-97D9-9DE25E3A048E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443A8076-C2ED-4F2B-97D9-9DE25E3A048E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7504A378-2C82-42F9-8FBB-42D205CC85BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7504A378-2C82-42F9-8FBB-42D205CC85BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7504A378-2C82-42F9-8FBB-42D205CC85BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7504A378-2C82-42F9-8FBB-42D205CC85BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

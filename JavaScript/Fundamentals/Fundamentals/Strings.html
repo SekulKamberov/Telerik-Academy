@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="title"></div>
+    <div id="escapedTitle"></div>
+    <h2>Problem 1. Reverse string</h2>
+    <ul>
+        <li>Write a JavaScript function that reverses a string and returns it.</li>
+    </ul>
+    <h2>Problem 2. Correct brackets</h2>
+    <ul>
+        <li>Write a JavaScript function to check if in a given expression the brackets are put correctly.</li>
+    </ul>
+    <h2>Problem 3. Sub-string in text</h2>
+    <ul>
+        <li>Write a JavaScript function that finds how many times a substring is contained in a given text (perform case insensitive search).</li>
+    </ul>
+    <h2>Problem 4. Parse tags</h2>
+    <ul>
+        <li>You are given a text. Write a function that changes the text in all regions:</li>
+    </ul>
+    <h2>Problem 5. nbsp</h2>
+    <ul>
+        <li>Write a function that replaces non breaking white-spaces in a text with &nbsp;</li>
+    </ul>
+    <h2>Problem 6. Extract text from HTML</h2>
+    <ul>
+        <li>Write a function that extracts the content of a html page given as text.</li>
+        <li>The function should return anything that is in a tag, without the tags.</li>
+    </ul>
+    <h2>Problem 7. Parse URL</h2>
+    <ul>
+        <li>Write a script that parses an URL address given in the format: [protocol]://[server]/[resource] and extracts from it the [protocol], [server] and [resource] elements.</li>
+        <li>Return the elements in a JSON object.</li>
+    </ul>
+    <h2>Problem 8. Replace tags</h2>
+    <ul>
+        <li>Write a JavaScript function that replaces in a HTML document given as string all the tags <a href="…">…</a> with corresponding tags [URL=…]…/URL].</li>
+    </ul>
+    <h2>Problem 9. Extract e-mails</h2>
+    <ul>
+        <li>Write a function for extracting all email addresses from given text.</li>
+        <li>All sub-strings that match the format @… should be recognized as emails.</li>
+        <li>Return the emails as array of strings.</li>
+    </ul>
+    <h2>Problem 10. Find palindromes</h2>
+    <ul>
+        <li>Write a program that extracts from a given text all palindromes, e.g. "ABBA", "lamal", "exe".</li>
+    </ul>
+    <h2>Problem 11. String format</h2>
+    <ul>
+        <li>Write a function that formats a string using placeholders.</li>
+        <li>The function should work with up to 30 placeholders and all types.</li>
+    </ul>
+    <h2>Problem 12. Generate list</h2>
+    <ul>
+        <li>Write a function that creates a HTML 'ul' using a template for every HTML 'li'.</li>
+        <li>The source of the list should be an array of elements.</li>
+        <li>Replace all placeholders marked with –{…}– with the value of the corresponding property of the object.</li>
+    </ul>
+
+    <div data-type="template" id="list-item">
+        <strong>-{firstName}-</strong> <strong>-{lastName}-</strong> <span>-{age}-</span> <span>-{sex}-</span>
+    </div>
+    <div id="people-list"></div>
+    <script>
+        var text = 'Some some Some 1 2 Some some 1234567890';
+        console.log(text);
+
+        console.log('==========concat==========');
+        var a = 'Ivan',
+            b = ' ',
+            c = 'Ivanov',
+            d = a.concat(b, c);
+        console.log(d);
+        console.log(''.concat('Pesho', ' ', 'Goshov'));
+
+        console.log('==========replace==========');
+        var newText = text.replace('Some', 'WOWe');
+        console.log(newText);
+
+        console.log('==========replace-regex==========');
+        newText = text.replace(/Some/g, 'WOWe');
+        console.log(newText);
+
+        console.log('==========search==========');
+        console.log('Search "so"');
+        var index = text.search(/so+/);
+        //searched = text.search(/12+/);
+        console.log(index);
+
+        console.log('==========split==========');
+        console.log('Split by " "');
+        var words = text.split(' ');
+        console.log(words);
+        console.log('==========split-regex==========');
+        words = text.split(/[o 1]/g) // split by " " and 1
+            .filter(function (word) { // remove empty strings
+                return !!word;
+            });
+        console.log(words);
+        console.log('==========substr==========');
+        console.log('text.substr(25) (from index 25)');
+        console.log(text.substr(25));
+        console.log('text.substr(25, 5) (from index 25 with length 5)');
+        console.log(text.substr(25, 5));
+        console.log('==========substring==========');
+        console.log('text.substring(25) (from index 25)');
+        console.log(text.substring(25));
+        console.log('text.substring(25, 27) (from index 25 to index 27)');
+        console.log(text.substring(25, 27));
+
+        console.log('==========htmlEscape()==========');
+        if (!(String.prototype.htmlEscape)) {
+            String.prototype.htmlEscape = function () {
+                var escapedStr = String(this)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39');
+                return escapedStr;
+            }
+        }
+
+        console.log('ASD<ASD>ASD"ASD&ASD'.htmlEscape());
+
+        console.log('==========padLeft(count [, char])==========');
+        if (!String.prototype.padLeft) {
+            String.prototype.padLeft = function (count, char) {
+                char = char || ' ';
+                if (char.length > 1) {
+                    return String(this);
+                }
+
+                if (this.length >= count) {
+                    return String(this);
+                }
+
+                var newString = String(this),
+                    i,
+                    len;
+                for (i = 0, len = count - newString.length; i < len; i += 1) {
+                    newString = char + newString;
+                }
+
+                return newString;
+            }
+        }
+
+        console.log('10101'.padLeft(32, '0'));
+
+        console.log('==========padRight(count [, char])==========');
+        if (!String.prototype.padRight) {
+            String.prototype.padRight = function (count, char) {
+                char = char || ' ';
+                if (char.length > 1) {
+                    return String(this);
+                }
+
+                if (this.length >= count) {
+                    return String(this);
+                }
+
+                var newString = String(this),
+                    i,
+                    len;
+                for (i = 0, len = count - newString.length; i < len; i += 1) {
+                    newString += char;
+                }
+
+                return newString;
+            }
+        }
+
+        console.log('10101'.padRight(32, '0'));
+
+        var title = '<h1>Strings</h1>';
+        document.getElementById('title').innerHTML = title;
+        document.getElementById('escapedTitle').innerHTML = title.htmlEscape();
+
+        console.log('==========1==========');
+
+        var text = "The text is as follows: We are living in an yellow submarine. We don't have anything else. inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.";
+
+        function reverseString(text) {
+            var reversedText = '',
+                i = 0,
+                length = text.length;
+            for (i = 0; i < length; i += 1) {
+                reversedText = text[i] + reversedText;
+            }
+
+            return reversedText;
+        }
+
+        console.log(reverseString(text));
+
+        console.log('==========2==========');
+
+        var bracketsExpression = '((a+b)/5-d)';
+        console.log(checkBrackets(bracketsExpression));
+        function checkBrackets(expression) {
+            var i = 0,
+                len = expression.length,
+                counter = 0;
+
+            for (i = 0; i < len; i += 1) {
+                if (expression[i] === '(') {
+                    counter += 1;
+                } else if (expression[i] === ')') {
+                    counter -= 1;
+                }
+
+                if (counter < 0) {
+                    return false;
+                }
+            }
+
+            if (counter === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        console.log('==========3==========');
+
+        var searched = 'in',
+            givenText = text;
+        console.log(countSubstring(text, searched));
+
+        function countSubstring(text, substring) {
+            var i = 0,
+                counter = 0,
+                length = text.length,
+                substringLength = substring.length,
+                index = text.indexOf(substring)
+
+            while (index != -1) {
+                counter += 1;
+                index = text.indexOf(substring, index + substring.length);
+            }
+
+            return counter;
+        }
+
+        console.log('==========4==========');
+
+
+
+        console.log('==========5==========');
+
+        var replacingString = '&nbsp;';
+        var textToBeReplaced = 'This is the text where non-braking white space will be replaced!';
+        console.log(replaceNonBrakingWhiteSpace(textToBeReplaced));
+
+        function replaceNonBrakingWhiteSpace(text, replacingString) {
+            replacingString = replacingString || '&nbsp;';
+            return text.replace(/ /g, replacingString);
+        }
+
+        console.log('==========6==========');
+
+        function createStringBuilder() {
+            return {
+                elements: [],
+                len: function () {
+                    return this.elements.length;
+                },
+                append: function (element) {
+                    this.elements.push(element);
+                },
+                toString: function () {
+                    return this.elements.join('');
+                }
+            };
+        }
+
+        function removeHTMLTags(htmlText) {
+            var inOpenTag = false,
+                i,
+                result = createStringBuilder(),
+                length = htmlText.length;
+
+            for (i = 0; i < length; i += 1) {
+                if (htmlText[i] === '<') {
+                    inOpenTag = true;
+                }
+                else if (htmlText[i] === '>') {
+                    inOpenTag = false;
+                }
+                else if (inOpenTag === false) {
+                    result.append(htmlText[i]);
+                }
+            }
+            return result.toString();
+        }
+
+        var htmlText = '<html><head><title>Sample site</title></head><body><div>text<div>more text</div>and more...</div>in body</body></html>';
+        console.log(removeHTMLTags(htmlText));
+        console.log('==========7==========');
+
+        function parseUrl(url) {
+            var protocolLastIndex = url.indexOf(':'),
+                protocol = url.substring(0, protocolLastIndex),
+                serverStartIndex = protocolLastIndex + 3,
+                serverEndIndex = url.indexOf('/', serverStartIndex),
+                server = url.substring(serverStartIndex, serverEndIndex),
+                resource = url.substring(serverEndIndex);
+            return {
+                protocol: protocol,
+                server: server,
+                resource: resource
+            };
+        }
+
+        console.log(parseUrl('http://telerikacademy.com/Courses/Courses/Details/239'));
+
+        console.log('==========8==========');
+
+        var htmlText = '<p>Please visit <a href="http://academy.telerik. com">our site</a> to choose a training course. Also visit <a href="www.devbg.org">our forum</a> to discuss the courses.</p>';
+
+        console.log(htmlText.replace(/<a\s*href=(.*?)\s*>(.*?)<\/a>/ig, '[URL=$1]$2[/URL]'));
+
+        console.log('==========9==========');
+        var email = 'Some random email: someIdentifier1@someHost1.someDomain and one more random email someIdentifier2@someHost2.someOtherDomain',
+            regEx = /[a-z0-9._-]{6,}@\w+\.[a-z.]{2,}/ig,
+            result;
+
+        while ((result = regEx.exec(email)) !== null) {
+            console.log(result[0]);
+        }
+        console.log('==========10==========');
+
+        function createStringBuilder() {
+            return {
+                elements: [],
+                len: function () {
+                    return this.elements.length;
+                },
+                append: function (element) {
+                    this.elements.push(element);
+                },
+                toString: function () {
+                    return this.elements.join('');
+                }
+            };
+        }
+
+        function reverseString(str) {
+            var result = createStringBuilder(),
+                i;
+            for (i = str.length - 1; i >= 0; i -= 1) {
+                result.append(str[i]);
+            }
+            return result.toString();
+        }
+
+        function extractPalindromes(text) {
+            text = text.toLowerCase().replace('.', ' ').replace('?', ' ').replace('!', ' ').replace(',', ' ');
+            var words = text.split(' '),
+                i,
+                result = [],
+                length = words.length;
+
+            for (i = 0; i < length; i += 1) {
+                if (words[i].length > 0 && words[i] === reverseString(words[i])) {
+                    result.push(words[i]);
+                }
+            }
+            return result;
+        }
+
+        var text = 'Some ABBA! random exe test to, iggi test';
+        console.log(extractPalindromes(text));
+
+        console.log('==========11==========');
+
+        var args = [1, 'pesho', 'Gosho', 'a', 'b', 'c'],
+            formatString = '{0}, {1}, {0} text {2} {3} {4} {5}',
+            text = formatString.replace(/{([0-9]+)}/ig, function () { return args[parseInt(arguments[1])]; });
+
+        console.log(text);
+        console.log('==========12==========');
+        function createPerson(firstName, lastName, age, sex) {
+            return {
+                firstName: firstName,
+                lastName: lastName,
+                age: age,
+                sex: sex
+            }
+        }
+
+        function generateList(people, template) {
+            var resultList = createStringBuilder(), i;
+            resultList.append('<ul>');
+
+            for (i = 0; i < people.length; ++i) {
+                resultList.append('<li>');
+                resultList.append(template.replace(/{(\w+)}/ig, function () { return people[i][arguments[1]]; }));
+                resultList.append('</li>');
+            }
+            resultList.append('</ul>');
+            return resultList.toString();
+        }
+
+        var people = [
+            createPerson('John', 'Nash', 84, 'male'),
+            createPerson('Donald', 'Knuth', 75, 'male'),
+            createPerson('Grace', 'Hopper', 85, 'female')
+        ];
+
+        var template = document.getElementById('list-item').innerHTML;
+        var peopleList = generateList(people, template);
+
+        document.getElementById('people-list').innerHTML = peopleList;
+        console.log(peopleList);
+    </script>
+
+</body>
+</html>

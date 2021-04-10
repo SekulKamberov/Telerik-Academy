@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Canvas</title>
+    <style>
+        canvas{
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="content" width="800" height="400">
+        No canvas suported!
+    </canvas>
+    <script>
+        var canvas = document.getElementById('content'),
+            ctx = canvas.getContext('2d');
+        // rectangles
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(20, 40, 50, 80);
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'white';
+        ctx.strokeRect(22, 42, 46, 76);
+
+        // paths
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+        ctx.moveTo(100, 50);
+        ctx.lineTo(150, 50);
+        ctx.lineTo(150, 100);
+
+        //ctx.moveTo(100, 100);
+        //ctx.lineTo(100, 50);
+
+        ctx.fill();
+        ctx.closePath();
+        ctx.stroke();
+
+        // arc
+        ctx.beginPath();
+        ctx.moveTo(350, 100);
+        ctx.arc(300, 100, 50, 0 * Math.PI, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(350, 100);
+        ctx.arc(300, 100, 50, 2 * Math.PI, 1.75 * Math.PI, true);
+        ctx.lineTo(300, 100);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(550, 100);
+        ctx.arc(500, 100, 50, 0 * Math.PI, 0.5 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(300, 350);
+        ctx.arc(300, 300, 50, 0.5 * Math.PI, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(450, 300);
+        ctx.arc(500, 300, 50, 1 * Math.PI, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+</body>
+</html>

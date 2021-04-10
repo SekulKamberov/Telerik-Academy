@@ -1,0 +1,28 @@
+﻿<div ng-controller="TripsController">
+    <h1 id="message" ng-show="message">{{message}}</h1>
+    <h1 id="error" ng-show="error">{{error}}</h1>
+    <form name="create">
+        <label for="from">From</label>
+        <select required name="from" id="from" ng-model="trip.from">
+            <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+        </select>
+        <br />
+
+        <label for="to">To</label>
+        <select required name="to" id="to" ng-model="trip.to">
+            <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+        </select>       
+        <br />
+
+        <label for="availableSeats">Available seats </label>
+        <input id="availableSeats" type="number" required ng-model="trip.availableSeats" min="1" max="7"/><br />
+
+        <!--<label for="departureTime">Departure time</label>-->
+        <div date-picker-directive model="trip.departureTime" id="'departureTime'"></div>
+        <!--<input id="departureTime" required type="datetime" ng-model="trip.departureTime"/>-->
+
+        <br />
+        <button ng-disabled="!create.$valid" ng-click="createTrip(trip, create)">Create</button>
+        <button><a href="#/trips">Cancel</a></button>
+    </form>
+</div>

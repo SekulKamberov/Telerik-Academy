@@ -1,0 +1,51 @@
+﻿<div ng-controller="DriversController">
+    <h1>Driver Details</h1>
+    <h2>{{driverDetails.name}}</h2>
+    <div>
+        <span>Upcoming trips: {{driverDetails.numberOfUpcomingTrips}}</span>
+        <span>Total trips: {{driverDetails.numberOfTotalTrips}}</span>
+        <div>
+            <div>
+                <label for="mineTrips">Only mine trips</label>
+                <input id="mineTrips" type="checkbox" ng-model="onlyMineTrips" />  </div>
+            <div>
+                <label for="driversTrips">Only driver trips</label>
+                <input id="driversTrips" type="checkbox" ng-model="onlyDriverTrips" />  </div>   
+        </div>
+        <span>
+            <label for="tripsSortId">Order by: </label>
+            <select id="tripsSortId" ng-model="orderTripsBy">
+                <option selected="selected" value="A">None</option>
+                <option value="driverName">Driver name ASC</option>
+                <option value="-driverName">Driver name DESC</option>
+                <option value="from">From ASC</option>
+                <option value="-from">From DESC</option>
+                <option value="to">To ASC</option>
+                <option value="-to">To DESC</option>
+                <option value="departureDate">Departure Date ASC</option>
+                <option value="-departureDate">Departure Date DESC</option>
+            </select>
+        </span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Driver</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="trip in driverDetails.trips | orderBy:orderTripsBy | onlyMineTripsFilter:onlyMineTrips:userLabel | onlyDriverTripsFilter:onlyDriverTrips:driverDetails.name">
+                <td>
+                    <a href="#/drivers/{{trip.driverId}}">{{trip.driverName}}</a>
+                </td>
+                <td>{{trip.from}}</td>
+                <td>{{trip.to}}</td>
+                <td><a href="#/trips/{{trip.id}}">{{trip.departureDate}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

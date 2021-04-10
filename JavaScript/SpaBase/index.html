@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trips 2014</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="content/img/favicon.ico"/>
+    <!--<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet"/>-->
+    <link href="content/loading-bar.css" rel="stylesheet" />
+    <link href="content/app.css" rel="stylesheet" />
+    <script src="libs/angular.js"></script> <!-- link has to be here for ng-cloak to work -->
+</head>
+<body ng-app="tripsModule" ng-cloak ng-controller="MainController">
+    <div ng-controller="AuthController">
+        <!-- as $scope object -->
+        <div ng-include="header"></div>
+
+        <!-- ROUTING will not work without this / routing content will load here-->
+        <div ng-view></div>
+
+        <!-- as $scope object -->
+        <div ng-include="footer"></div>
+    </div>
+    
+    <!--<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css"></script>-->
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/loading-bar.js"></script>
+    <script src="libs/angular-cookies.js"></script>
+    <script src="libs/angular-resource.js"></script>
+    <script src="libs/angular-route.js"></script>
+    <script src="libs/angular-sanitize.js"></script>
+
+    <script src="app/app.js"></script>
+
+    <script src="app/controllers/AuthController.js"></script>
+    <script src="app/controllers/MainController.js"></script>
+    <script src="app/controllers/InfoController.js"></script>
+    <script src="app/controllers/TripsController.js"></script>
+    <script src="app/controllers/DriversController.js"></script>
+    <script src="app/controllers/ErrorsController.js"></script>
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/cookiesService.js"></script>
+    <script src="app/services/statsService.js"></script>
+    <script src="app/services/tripsService.js"></script>
+    <script src="app/services/driversService.js"></script>
+    <script src="app/filters/takeNameFromMailFilter.js"></script>
+    <script src="app/filters/onlyMineTripsFilter.js"></script>
+    <script src="app/filters/onlyDriverTripsFilter.js"></script>
+    <script src="app/filters/isTripFinishedFilter.js"></script>
+    <script src="app/services/sha1Service.js"></script>
+    <script src="app/directives/datePickerDirective.js"></script>
+    <script src="app/directives/tripDirective.js"></script>
+    <script src="app/directives/tripPublicDirective.js"></script>
+</body>
+</html>

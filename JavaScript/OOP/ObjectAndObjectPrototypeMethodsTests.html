@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ObjectAndObjectPrototypeMethodsTests</title>
+</head>
+<body>
+    <script>
+
+        (function () {
+            var obj = {};
+
+            Object.defineProperty(obj, 'Name', {
+                __proto__: null,
+                value: 'John - configurable: false, enumerable: true',
+                configurable: false,
+                enumerable: true,
+            });
+
+            Object.defineProperty(obj, 'Age', {
+                value: 18,
+                configurable: false,
+                writable: false,
+                enumerable: true,
+            });
+
+            Object.defineProperty(obj, 'City', {
+                value: 'Plovdiv',
+                configurable: false,
+                writable: true,
+                enumerable: true,
+            });
+
+            Object.defineProperty(obj, 'ID', {
+                get: function(){
+                    return this._ID;
+                },
+                set: function (value) {
+                    if (typeof value !== 'number') {
+                        throw newError('Ivalid ID');
+                    }
+
+                    this._ID = value;
+                },
+                configurable: false,
+                enumerable: false,
+            });
+
+            Object.defineProperty(obj, 'Address', {
+                value: 'street 777',
+                configurable: false,
+                writable: true,
+                enumerable: true,
+            });
+
+            Object.defineProperty(obj, 'Street', setDescriptors('RA', false, true, true));
+
+            // extendable: false
+            // can be deleted
+            //console.log("Prevent extensions!");
+            //Object.preventExtensions(obj);
+            //console.log('isExtendable(): ' + Object.isExtensible(obj));
+
+            // configurable: false
+            // extendable: false
+            // obj can not be deleted
+            //Object.seal(obj);
+            //console.log('isSealed(): ' + Object.isSealed(obj));
+
+            // obj cannot change, but inner properties can
+            // Object.freeze(obj);
+            // console.log(Object.isFrozen(obj));
+
+            // throw if sealed() or preventExtensions()
+            //Object.defineProperty(obj, 'Planet', {
+            //    value: 'Mars',
+            //    configurable: true,
+            //    writable: true,
+            //    enumerable: true,
+            //});
+
+            function setDescriptors(value, isEnumerable, isConfigurable, isWritable) {
+                var configuration =
+                    setDescriptors.configuration || (
+                        setDescriptors.configuration = {
+                            value: value,
+                            configurable: isConfigurable || false,
+                            writable: isWritable || false,
+                            enumerable: isEnumerable || false,
+                        }
+                    );
+
+                return configuration;
+            }
+
+            console.log(obj);
+            obj.Name = 'John - configurable: true ...';
+            obj.Age = 28;
+            obj.City = 'Sofia';
+            obj.Street = 'Malinov';
+            obj.ID = 323434545;
+            obj.Address = 'street 666';
+            delete obj.Address;
+            console.log(obj);
+
+            // keys
+            console.log(Object.keys(obj));
+
+        }());
+
+        (function () {
+            var obj = {};
+
+            Object.defineProperties(obj, {
+                'name': {
+                    value: 'Pesho',
+                    writable: true,
+                    enumerable: true,
+                    configurable: true,
+                },
+                'age': {
+                    get: function(){
+                        return this._age;
+                    },
+                    set: function (value) {
+                        if (typeof value !== 'number') {
+                            throw new Error('Not a number');
+                        }
+
+                        if (value < 18 || 100 < value) {
+                            throw new Error('Age out of range!');
+                        }
+
+                        this._age = value;
+                    },
+                    enumerable: false,
+                    configurable: false,
+                }
+            });
+
+            obj.name = 'Gosho';
+            obj.age = 22;
+            console.log(obj);
+        }());
+
+        //(function () {
+        //    var logger = (function () {
+
+        //        function Logger() {
+
+        //            Object.defineProperty(this, "addLog", {
+        //                value: function (username) {
+        //                    // TODO validate
+        //                    var log = {
+        //                        username: username,
+        //                        datetime: new Date(),
+        //                        id: generator.generateId(),
+        //                    };
+
+        //                    this.history.push(log);
+
+        //                    return this;
+        //                },
+        //                enumerable: true,
+        //            });
+
+        //            Object.defineProperty(this, "init", {
+        //                value: function () {
+        //                    this.history = [];
+
+        //                    return this;
+        //                },
+        //            });
+
+        //            Object.defineProperty(this, "getHistory", {
+        //                value: function () {
+        //                    return this.history.slice(0);
+        //                },
+        //            });
+
+        //            var generator = (function () {
+        //                var id = 0;
+
+        //                function generateId() {
+        //                    id += 1;
+        //                    return id;
+        //                }
+
+        //                return {
+        //                    generateId: generateId,
+        //                };
+        //            }());
+
+        //            return logger;
+        //        }
+
+        //        return Logger;
+        //    }());
+
+        //    console.log('===== Logger =====');
+
+        //    var newLogger = Object.create(logger).init();
+
+        //    newLogger.addLog('Ivan')
+        //                .addLog('Dragan')
+        //                .addLog('Pesho')
+        //                .addLog('Gosho');
+
+        //    console.log('===== History =====');
+        //    console.log(newLogger.getHistory());
+        //    console.log(newLogger.history);
+        //}());
+
+        (function () {
+            var Logger = (function(){
+                function Logger(){
+                    var lastLog = null,
+                        id = 0,
+                        history = [],
+                        hidden = [0, 1, 2, 3, 4, 5]; // hidden will be visible too if used somewhere
+
+                    Object.defineProperties(this, {
+                        //value: {
+                        //    enumerable: true,
+                        //    get: function (){
+                        //        return val;
+                        //    },
+                        //    set: function(value){
+                        //        val = value;
+                        //        id += 1;
+                        //        history.push({id: id, info: value});
+                        //    }
+                        //},
+                        getHistory: {
+                            value: function (){
+                                return history.slice(0);
+                            }
+                        },
+                        addLog: {
+                            value: function (value) {
+                                lastLog = value;
+                                id += 1;
+                                history.push({ id: id, info: value });
+                            }
+                        }
+                    });
+                }
+
+                return Logger;
+            }());
+
+            console.log('===== Logger =====');
+
+            var logger = new Logger();
+            console.log(logger.getHistory());
+            logger.addLog('First');
+            console.log(logger.getHistory());
+            logger.addLog('Second');
+            console.log(logger.getHistory());
+            logger.addLog('Third');
+            console.log(logger.getHistory());
+
+            console.log(logger);
+        }());
+    </script>
+</body>
+</html>

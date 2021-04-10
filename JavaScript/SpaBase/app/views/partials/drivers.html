@@ -1,0 +1,56 @@
+﻿<div ng-if="isLogedIn" ng-controller="DriversController">
+    <h1>
+        Latest drivers
+    </h1>
+    <div>
+        <div>
+            Containes
+            <input type="text" ng-model="driverSubstringFilter"/>
+            <button ng-click="setDriverSubstringFilter(driverSubstringFilter)" title="Filters drivers client side (search for substring in name or trips data)!">Filter</button>
+        </div>
+        <br />
+        <div>
+            Page
+            <button ng-disabled="page <= 1" ng-click="getDriversByPage(page - 1, driverSubstringFilter)" title="Gets server side paged drivers (and filtered by name if any param)">
+                <strong>Previous</strong>
+            </button>
+            <input type="number" min="1" ng-model="page" />
+            <button ng-click="getDriversByPage(page, driverSubstringFilter)" title="Gets server side paged drivers (and filtered by name if any param)">
+                <strong>Page {{page}}</strong>
+            </button>
+            <button ng-click="getDriversByPage(page + 1, driverSubstringFilter)" title="Gets server side paged drivers (and filtered by name if any param)">
+                <strong>Next</strong>
+            </button>
+        </div>
+        <br />
+    </div>
+    <table ng-show="filteredDrivers.length">
+        <thead>
+            <tr>
+                <th>Driver</th>
+                <th>Upcoming Trips</th>
+                <th>Total Trips</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="driver in filteredDrivers = (drivers | filter:substring)">
+                <td>
+                    <a href="#/drivers/{{driver.id}}">{{driver.name}}</a>
+                </td>
+                <td>
+                    {{driver.numberOfUpcomingTrips}}
+                </td>
+                <td>
+                    {{driver.numberOfTotalTrips}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-if="!filteredDrivers.length">
+        <h2>No Results!</h2>
+    </div>
+</div>
+<div ng-if="!isLogedIn">
+    <div ng-include="driversPublic"></div>
+</div>
+

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+  attributeFormDefault="unqualified" 
+  elementFormDefault="qualified" 
+  targetNamespace="https://telerikacademy.com/students" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:element name="students">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="student">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" />
+              <xs:element name="sex" type="xs:string" />
+              <xs:element name="birthdate" type="xs:date" />
+              <xs:element name="phone" type="xs:integer" />
+              <xs:element name="email" type="xs:string" />
+              <xs:element name="speciality" type="xs:string" />
+              <xs:element name="facultynumber" type="xs:integer" />
+              <xs:element name="exams">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="exam">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="name" type="xs:string" />
+                          <xs:element name="tutor" type="xs:string" />
+                          <xs:element name="score" type="xs:byte" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="enrollmentinformation">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element name="score" type="xs:integer" />
+                    <xs:element name="date" type="xs:date" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            <xs:element name="endorsments">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                    <xs:element name="letter" type="xs:string" />
+                    <xs:element name="date" type="xs:date" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

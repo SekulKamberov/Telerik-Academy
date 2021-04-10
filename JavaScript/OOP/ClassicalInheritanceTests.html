@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Classical Inheritance Tests</title>
+</head>
+<body>
+    <script>
+        var CONSTANTS = {
+            NAME_MIN_LENGTH: 2,
+            NAME_MAX_LENGTH: 10,
+            MIN_AGE: 1,
+            MAX_AGE: 5,
+            ANIMAL_MIN_AGE_FOR_SELL: 2,
+        };
+
+        var Animal = (function () {
+            function Animal(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            Object.defineProperty(Animal.prototype, 'name', {
+                get: function () {
+                    return this._name;
+                },
+                set: function (value) {
+                    validator.validateString(value, 'Animal name', CONSTANTS.NAME_MIN_LENGTH, CONSTANTS.NAME_MAX_LENGTH);
+                    this._name = value;
+                }
+            });
+
+            Object.defineProperty(Animal.prototype, 'age', {
+                get: function () {
+                    return this._age;
+                },
+                set: function (value) {
+                    validator.validateNumberRange(value, 'Animal age', CONSTANTS.MIN_AGE, CONSTANTS.MAX_AGE)
+                    this._age = value;
+                }
+            });
+
+            Animal.prototype.getInfo = function () {
+                return '=====Animal info=====\nName: ' + this._name + ' Age: ' + this._age + '\n=====================\n';
+            };
+
+            Animal.canBeSold = function (age) {
+                return age > CONSTANTS.ANIMAL_MIN_AGE_FOR_SELL;
+            }
+
+            return Animal;
+        }());
+
+        var Dog = (function (parent) {
+            function Dog(name, age, color) {
+                parent.call(this, name, age);
+                this.color = color;
+            }
+
+            Object.defineProperty(parent.prototype, 'color', {
+                get: function () {
+                    return this._color;
+                },
+                set: function (value) {
+                    validator.validateNonEmptyString(value, 'Dog color')
+                    this._color = value;
+                }
+            });
+
+            Dog.prototype = Object.create(parent.prototype);
+
+            Dog.prototype.getInfo = function () {
+                var animalInfo = parent.prototype.getInfo.call(this);
+                return animalInfo + ' Color: ' + this.color + '\n=====================\n';
+            }
+
+            Dog.canBeSold = parent.canBeSold;
+
+            return Dog;
+        }(Animal));
+
+        validator = {
+            validateIfUndefined: function (val, name) {
+                name = name || 'Value';
+                if (val === undefined) {
+                    throw new Error(name + ' cannot be undefined');
+                }
+            },
+            validateIfObject: function (val, name) {
+                name = name || 'Value';
+                if (typeof val !== 'object') {
+                    throw new Error(name + ' must be an object');
+                }
+            },
+            validateIfItem: function (item) {
+                validator.validateIfObject(item, 'Catalog add item parameter');
+                validator.validateIfUndefined(item.id, 'Catalog add item parameter must have id');
+                validator.validateIfUndefined(item.name, 'Catalog add item parameter must have name');
+            },
+            validateIfInstance: function (item) {
+                if (!(this.constructor.name.toLowerCase() === item.constructor.name.toLowerCase())) {
+                    throw new Error('Not a instance!');
+                }
+            },
+            validateIfNumber: function (val, name) {
+                name = name || 'Value';
+                if (typeof val !== 'number') {
+                    throw new Error(name + ' must be a number');
+                }
+            },
+            validateString: function (val, name, min, max) {
+                name = name || 'Value';
+                this.validateIfUndefined(val, name);
+
+                if (typeof val !== 'string') {
+                    throw new Error(name + ' must be a string');
+                }
+
+                this.validateItemLength(val, name, min, max);
+            },
+            validateStringNoLength: function (val, name) {
+                name = name || 'Value';
+                this.validateIfUndefined(val, name);
+
+                if (typeof val !== 'string') {
+                    throw new Error(name + ' must be a string');
+                }
+            },
+            validateIsbnLength: function (val, name) {
+                name = name || 'Value';
+
+                if (val.length != CONSTANTS.VALID_ISBN_LENGTH_ONE
+                    && CONSTANTS.VALID_ISBN_LENGTH_TWO != val.length) {
+                    throw new Error(name + ' must be ' + CONSTANTS.VALID_ISBN_LENGTH_ONE +
+                        ' or ' + CONSTANTS.VALID_ISBN_LENGTH_TWO + ' symbols');
+                }
+            },
+            validateItemLength: function (val, name, min, max) {
+                name = name || 'Value';
+
+                if (val.length < min
+                    || max < val.length) {
+                    throw new Error(name + ' length must be between ' + min +
+                        ' and ' + max + ' symbols');
+                }
+            },
+            validateNonEmptyString: function (val, name) {
+                name = name || 'Value';
+                this.validateIfUndefined(val, name);
+
+                if (typeof val !== 'string') {
+                    throw new Error(name + ' must be a string');
+                }
+
+                if (!val || val === '') {
+                    throw new Error(name + ' must not be empty');
+                }
+            },
+            validatePositiveNumber: function (val, name) {
+                name = name || 'Value';
+                this.validateIfUndefined(val, name);
+                this.validateIfNumber(val, name);
+
+                if (val <= 0) {
+                    throw new Error(name + ' must be positive number');
+                }
+            },
+            validateNumberRange: function (val, name, min, max) {
+                name = name || 'Value';
+                this.validateIfUndefined(val, name);
+                this.validateIfNumber(val, name);
+
+                if (val < min || max < val) {
+                    throw new Error(name + ' must be in range [' + min + ', ' + max + ']');
+                }
+            },
+            validateImdbRating: function (val) {
+                this.validateIfUndefined(val, 'IMDB Rating');
+                this.validateIfNumber(val, 'IMDB Rating');
+
+                if (val < CONSTANTS.IMDB_MIN_RATING || CONSTANTS.IMDB_MAX_RATING < val) {
+                    throw new Error('IMDB Rating must be between '
+                        + CONSTANTS.IMDB_MIN_RATING
+                        + ' and ' + CONSTANTS.IMDB_MAX_RATING);
+                }
+            },
+            validateId: function (id) {
+                this.validateIfUndefined(id, 'Object id');
+                if (typeof id !== 'number') {
+                    id = id.id;
+                }
+
+                this.validateIfUndefined(id, 'Object must have id');
+                return id;
+            },
+            validatePageAndSize: function (page, size, maxElements) {
+                this.validateIfUndefined(page);
+                this.validateIfUndefined(size);
+                this.validateIfNumber(page);
+                this.validateIfNumber(size);
+
+                if (page < 0) {
+                    throw new Error('Page must be greather than or equal to 0');
+                }
+
+                this.validatePositiveNumber(size, 'Size');
+
+                if (page * size > maxElements) {
+                    throw new Error('Page * size will not return any elements from collection');
+                }
+            }
+        };
+
+        var animal1 = new Animal('Pesho', 1),
+            animal2 = new Animal('Gosho', 5);
+        console.log(animal1.getInfo());
+        console.log("ANIMAL CAN BE SOLD: " + Animal.canBeSold(animal1._age));
+        console.log(animal2.getInfo());
+        console.log("ANIMAL CAN BE SOLD: " + Animal.canBeSold(animal2._age));
+
+        var dog1 = new Dog('Max', 1, 'white and black');
+        console.log(dog1.getInfo());
+        console.log("DOG CAN BE SOLD: " + Dog.canBeSold(dog1._age));
+
+        var Person = (function () {
+
+            function Person(fname, lname, age) {
+                this.fname = fname;
+                this.lname = lname;
+                this.age = age;
+            }
+
+            Object.defineProperty(Person.prototype, 'fname', {
+                get: function () {
+                    return this._fname;
+                },
+                set: function (value) {
+                    if (typeof (value) !== 'string') {
+                        throw new Error('Invalid fname');
+                    }
+
+                    this._fname = value;
+                },
+                enumerable: false,
+            });
+
+            Object.defineProperty(Person.prototype, 'lname', {
+                get: function () {
+                    return this._lname;
+                },
+                set: function (value) {
+                    if (typeof (value) !== 'string') {
+                        throw new Error('Invalid lname');
+                    }
+
+                    this._lname = value;
+                },
+            });
+
+            Object.defineProperty(Person.prototype, 'age', {
+                get: function () {
+                    return this._age;
+                },
+                set: function (value) {
+                    if (typeof (value) !== 'number') {
+                        throw new Error('Invalid age');
+                    }
+
+                    this._age = value;
+                },
+            });
+
+            Object.defineProperty(Person.prototype, 'fullname', {
+                get: function () {
+                    return this._fname + ' ' + this._lname;
+                },
+            });
+
+            Person.prototype.info = function () {
+                return 'Full Name: ' + this.fullname + ' Age: ' + this._age;
+            }
+
+            Person.isAdult = function (age) {
+                return age > 18;
+            }
+            
+            return Person;
+        }());
+
+        var firstPerson = new Person('Ivan', 'Ivanov', 32),
+                secondPerson = new Person('Petar', 'Petrov', 14);
+        console.log(firstPerson.info());
+        console.log(secondPerson.info());
+        console.log(firstPerson.fullname);
+
+        console.log(Person.isAdult(firstPerson.age));
+        console.log(Person.isAdult(secondPerson.age));
+
+        // inheritance
+        var Student = (function () {
+            function Student(fname, lname, age, grade) {
+                Person.call(this, fname, lname, age);
+                this.grade = grade;
+            }
+
+            Object.defineProperty(Person.prototype, 'grade', {
+                get: function () {
+                    return this._grade;
+                },
+                set: function (value) {
+                    if (typeof (value) !== 'number') {
+                        throw new Error('Invalid grade');
+                    }
+
+                    this._grade = value;
+                },
+                enumerable: false,
+            });
+
+            Student.prototype = Object.create(Person.prototype);
+
+            Student.prototype.info = function () {
+                var personInfo = Person.prototype.info.call(this);
+                return personInfo + ' Grade: ' + this.grade;
+            }
+
+            return Student;
+        }());
+
+        var student = new Student('Ivan', 'Studentov', 18, 5);
+        console.log('student instanceof Student: ' + (student instanceof Student));
+        console.log('student instanceof Person: ' + (student instanceof Person));
+        console.log('person instanceof Student: ' + (firstPerson instanceof Student));
+        console.log('student.fullname: ' + student.fullname);
+        console.log('student.info(): ' + student.info());
+    </script>
+</body>
+</html>

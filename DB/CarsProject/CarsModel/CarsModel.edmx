@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufacturerId" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TransmisionId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="DealerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dealers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TransmisionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cars_Dealers">
+          <End Role="Dealers" Type="Self.Dealers" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Manufacturers">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_TransmisionTypes">
+          <End Role="TransmisionTypes" Type="Self.TransmisionTypes" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransmisionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="TransmisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Dealers" Type="Self.Dealers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsModelStoreContainer">
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dealers" EntityType="Self.Dealers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransmisionTypes" EntityType="Self.TransmisionTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars_Dealers" Association="Self.FK_Cars_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Manufacturers" Association="Self.FK_Cars_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_TransmisionTypes" Association="Self.FK_Cars_TransmisionTypes">
+            <End Role="TransmisionTypes" EntitySet="TransmisionTypes" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Cities" Association="Self.FK_Dealers_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TransmisionId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DealerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dealer" Relationship="Self.FK_Cars_Dealers" FromRole="Cars" ToRole="Dealers" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Cars_Manufacturers" FromRole="Cars" ToRole="Manufacturers" />
+          <NavigationProperty Name="TransmisionType" Relationship="Self.FK_Cars_TransmisionTypes" FromRole="Cars" ToRole="TransmisionTypes" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dealers" Relationship="Self.FK_Dealers_Cities" FromRole="Cities" ToRole="Dealers" />
+        </EntityType>
+        <EntityType Name="Dealer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Dealers" FromRole="Dealers" ToRole="Cars" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Dealers_Cities" FromRole="Dealers" ToRole="Cities" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Manufacturers" FromRole="Manufacturers" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TransmisionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_TransmisionTypes" FromRole="TransmisionTypes" ToRole="Cars" />
+        </EntityType>
+        <Association Name="FK_Cars_Dealers">
+          <End Role="Dealers" Type="Self.Dealer" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Manufacturers">
+          <End Role="Manufacturers" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_TransmisionTypes">
+          <End Role="TransmisionTypes" Type="Self.TransmisionType" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransmisionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="TransmisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Cities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="Dealers" Type="Self.Dealer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Dealers" EntityType="Self.Dealer" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TransmisionTypes" EntityType="Self.TransmisionType" />
+          <AssociationSet Name="FK_Cars_Dealers" Association="Self.FK_Cars_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Manufacturers" Association="Self.FK_Cars_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_TransmisionTypes" Association="Self.FK_Cars_TransmisionTypes">
+            <End Role="TransmisionTypes" EntitySet="TransmisionTypes" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Cities" Association="Self.FK_Dealers_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarsModelStoreContainer" CdmEntityContainer="CarsEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarsModel.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="TransmisionId" ColumnName="TransmisionId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="CarsModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dealers">
+            <EntityTypeMapping TypeName="CarsModel.Dealer">
+              <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="CarsModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CarsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransmisionTypes">
+            <EntityTypeMapping TypeName="CarsModel.TransmisionType">
+              <MappingFragment StoreEntitySet="TransmisionTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

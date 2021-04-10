@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Event Model</title>
+</head>
+<body>
+    <button id="firstBtn">First Button</button>
+    <button id="secondBtn">Second Button</button>
+    <button id="thirdBtn">Third Button</button>
+
+    <div id="container">
+        <button id="forthBtn">Forth Button</button>
+    </div>
+    <button id="fifthBtn">Fifth Button</button>
+    <script>
+        console.log('===== Event Model =====');
+
+        function buttonEventClicked(event) {
+            // console.log(event);
+            console.log(event.target);
+        }
+
+        document.getElementById('firstBtn').addEventListener('click', buttonEventClicked, false);
+        document.getElementById('secondBtn').addEventListener('click', buttonEventClicked, false);
+
+        console.log('===== Cross Browser Event =====');
+
+        document.getElementById('thirdBtn').addEventListener('click', crossBrowser, false);
+        function crossBrowser(event) {
+            if (!event) {
+                event = window.event;
+            }
+
+            // console.log(event);
+            console.log(event.target);
+            console.log('BUTTON CLICKED');
+        }
+
+        console.log('===== OLD Browsers =====');
+
+        function attachEventHandler(eventType, eventHandler, domElementId) {
+            var domElement = document.getElementById(domElementId);
+            if (!domElement) {
+                return;
+            }
+
+            if (document.addEventListener) {
+                domElement.addEventListener(eventType, eventHandler, true);
+                console.log('domElement.addEventListener');
+            } else if (document.attachEvent) {
+                domElement.attachEvent('on' + eventType, eventHandler);
+                console.log('domElement.attachEvent');
+            } else {
+                domElement['on' + eventType] = eventHandler;
+                console.log('domElement.[onclick]');
+            }
+        }
+
+        attachEventHandler('click', crossBrowser, 'forthBtn');
+
+        console.log('===== Capturing and Bubbling Events =====');
+        var container = document.getElementById('container');
+        container.addEventListener('click', function () {
+            console.log('CONTAINER CLICKED');
+        }, false);
+
+        //var container = document.getElementById('container');
+        //container.addEventListener('click', function () {
+        //    console.log('CONTAINER CLICKED');
+        //}, true);
+
+        console.log('===== Custom Events =====');
+        var tripleClickEvent = new CustomEvent('tripleClicked');
+
+        var fifthBtn = document.getElementById('fifthBtn');
+
+        fifthBtn.addEventListener('tripleClicked', function () {
+            console.log('THIRD CLICK TRIGGERED THE EVENT');
+        }, false);
+
+        fifthBtn.addEventListener('click', function (event) {
+            console.log('CLICK ' + event.detail);
+            if (event.detail === 3) {
+                alert('triple click!');
+                fifthBtn.dispatchEvent(tripleClickEvent);
+            }
+        }, false);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+Connection string for "PetStore" database:
+	<connectionStrings>
+    		<add name="PetStoreEntities" connectionString="metadata=res://*/PetStoreModel.csdl|res://*/PetStoreModel.ssdl|res://*/PetStoreModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;initial catalog=PetStore;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  	</connectionStrings>
+
+Connection string for "SocialNetwork" database:
+	
+  <connectionStrings>
+    <add name="SocialNetworkDbContext" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=SocialNetworkDbContext;Integrated Security=True"       providerName="System.Data.SqlClient" ></add>
+  </connectionStrings>
+
+Relationships for "PetStore" database: 
+	Pets-to-Colors One-To-Many by PrimaryKey Pets(ColorId) and FK Colors(Id)
+
+	Pets-to-Species One-To-Many by PrimaryKey Pets(SpecieId) and FK Species(Id)
+
+	Species-to-Contries One-To-Many by PrimaryKey Species(CountryId) and FK Countries(Id)
+
+	Species-to-PetProducts Many-To-Many by PrimaryKey Species(Id) and PK PetProducts(Id) and third table SpeciesProducts with PK SpeciesId-ProductId and FK to the first to tables
+
+	PetProducts-to-Categories One-To-Many by PrimaryKey PetProducts(CategoryId) and FK Category(Id)
+	
+Relationships for "SocialNetwork" database: 
+	(fill in here)
+	
+JSON Result files location: (fill in here)

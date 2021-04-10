@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Handlebars</title>
+</head>
+<body>
+    <div id="wrapper"></div>
+
+    <script id="nav-template" type="text/x-handlebars-template">
+        <h1>
+            <a href="{{link.href}}">{{link.name}}</a>
+        </h1>
+    </script>
+
+    <script id="footer-template" type="text/x-handlebars-template">
+        <hr />
+        <h1>Footer</h1>
+        <ul>
+            {{#each this}}
+            <li>
+                <em><a href="{{href}}">{{name}}</a></em>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="article-template" type="text/x-handlebars-template">
+        <div class="template">
+            <p class="article-title" data-id="{{id}}">{{{title}}}</p>
+            <p>{{content}}</p>
+            <p>{{safe-content}}</p>
+            <p>Read: {{visitors}}</p>
+            <p>Likes: {{likes}}</p>
+            <p>
+                Tags(collection):
+                {{#tags}}
+                <a href="partials/{{id}}.html">{{name}}</a>
+                {{/tags}}
+            </p>
+            {{#if author}}
+            <p>#if author: {{author}}</p>
+            {{/if}}
+            {{#unless nocar}}
+            <p>#unless nocar: <strong>No Car</strong></p>
+            {{/unless}}
+            {{#if town}}
+            <p>Town: {{town}}</p>
+            {{/if}}
+            {{#unless town}}
+            <p>No Town</p>
+            {{/unless}}
+            {{#if hasFullName}}
+            <p>Has Full Name: {{firstName}} {{lastName}}</p>
+            {{/if}}
+            <p>
+                <strong>Tags(#each has @index):</strong>
+                {{#each tags}}
+                <a href="partials/{{id}}.html"> (index: {{@index}}, value: {{name}} ) </a>
+                {{/each}}
+            </p>
+            <p>
+                {{#each tags}}
+                <span>{{this.name}}</span>
+                {{/each}}
+            </p>
+            <p>
+                Siblings:
+                {{#with family}}
+                <hr />
+                <span>Brother: {{brother}}</span> <span>Sister: {{sister}}</span> <span>Grandmother: {{grandparrents.grandmother}}</span>
+                {{/with}}
+                <hr />
+                Siblings: <span>Brother: {{family.brother}}</span> <span>Sister: {{family.sister}}</span> <span>Grandmother: {{family.grandparrents.grandmother}}</span>
+            </p>
+            <p>
+                {{#list links navTemplateId}}
+                {{/list}}
+            </p>
+        </div>
+    </script>
+
+    <script src="Scripts/handlebars.min.js"></script>
+
+    <script>
+        // register custom helper
+        Handlebars.registerHelper('list', function (links, navTemplateId) {
+            var listResult = '<ul>',
+                link,
+                navTemplate = Handlebars.compile(document.getElementById(navTemplateId).innerHTML),
+                footerTemplate = Handlebars.compile(document.getElementById('footer-template').innerHTML);
+            for (index in links) {
+                //html += '<li><a href="' + link.href + '>' + link.name + '</a></li>';
+                listResult +=
+                    '<li>' +
+                    navTemplate({ link: links[index] }); +
+                    '</li>';
+            }
+
+            listResult += '</ul>';
+            listResult += footerTemplate(links);
+
+            return new Handlebars.SafeString(listResult);
+        });
+
+        //
+        var html = document.getElementById('article-template').innerHTML,
+            articleTemplate = Handlebars.compile(html),
+            article = {
+                id: 5,
+                title: '<h1>{{{Title (not escaped)}}}</h1>',
+                content: 'The earth is millions of years old...<h1>(escaped)</h1>',
+                'safe-content': new Handlebars.SafeString('<h1>new Handlebars.SafeString("string");</h1> '),
+                visitors: 123445,
+                likes: 453,
+                tags: [{ name: 'oop', id: 1 }, { name: 'java', id: 2 }, { name: 'script', id: 3 }],
+                author: 'Baj Ivan',
+                town: null,
+                firstName: 'Pesho',
+                lastName: 'Goshov',
+                hasFullName: true,
+                family:
+                    {
+                        brother: 'Ivan4o',
+                        sister: 'Marijka',
+                        grandparrents: {
+                            grandmother: 'Baba Todora'
+                        },
+
+                    },
+                links: [{ name: 'telerik.com', href: 'partials/1.html' }, { name: 'bgcoder.com', href: 'partials/2.html' }, { name: 'google.com', href: 'partials/3.html' }],
+                navTemplateId: 'nav-template',
+            };
+
+        var articleResult = articleTemplate(article);
+
+        document.getElementById('wrapper').innerHTML = articleResult;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b03e37acfa54428e9f9b3406f2dcc494" Name="Diagram1">
+        <EntityTypeShape EntityType="CarsModel.Car" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsModel.City" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsModel.Dealer" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsModel.Manufacturer" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsModel.TransmisionType" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="CarsModel.FK_Cars_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsModel.FK_Cars_Manufacturers" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsModel.FK_Cars_TransmisionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsModel.FK_Dealers_Cities" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

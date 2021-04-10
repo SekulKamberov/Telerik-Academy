@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        console.log('==============1==============');
+        console.log('Create a module for working with books');
+
+        var library = (function () {
+            var books = [],
+                categories = [];
+
+            var generator = (function () {
+                var bookId = 1,
+                    categoryId = 1;
+                return {
+                    generateBoookId: function () {
+                        return bookId += 1;
+                    },
+                    generateCategoryId: function () {
+                        return categoryId += 1;
+                    }
+                };
+            }());
+
+            function addBook(book) {
+                var title = book.title,
+                    category = book.category,
+                    author = book.author,
+                    isbn = book.isbn,
+                    notUniqueBookTitle,
+                    notUniqueBookIsbn,
+                    categoryExists;
+
+                if (!title || !category || !author || title.match(/^[0-9A-z!,.# ]{2,100}$/g) === null || category.match(/^[0-9A-z!,. ]{2,100}$/g) === null) {
+                    throw new Error();
+                }
+
+                if (isbn.match(/(^[0-9]{10}$)|(^[0-9]{13}$)/g) === null) {
+                    throw new Error();
+                }
+
+                notUniqueBookTitle = books.some(function (item, index, array) {
+                    return item.title === title;
+                });
+
+                notUniqueBookIsbn = books.some(function (item, index, array) {
+                    return item.isbn === isbn;
+                });
+
+                if (notUniqueBookTitle || notUniqueBookIsbn) {
+                    throw new Error();
+                }
+
+                categoryExists = categories.some(function (item, index, array) {
+                    return item === category;
+                    //return item.name === category;
+                });
+
+                if (!categoryExists) {
+                    //var newCategory = {
+                    //    ID: generator.generateCategoryId(),
+                    //    name: category,
+                    //};
+
+                    //categories.push(newCategory);
+
+                    categories.push(category);
+                }
+
+                book.ID = generator.generateBoookId();
+
+                books.push(book);
+
+                return book;
+            }
+
+            function listBooks() {
+                var sortedBooks = books.sort(function (x, y) {
+                    return x.ID - y.ID;
+                });
+
+                var sortedBy = arguments[0] || {};
+                sortedBy.category = sortedBy.category || '';
+                sortedBy.author = sortedBy.author || '';
+
+                if (sortedBy.category) {
+                    sortedBooks = books.filter(function (item, index, array) {
+                        return item.category === sortedBy.category;
+                    });
+                } else if (sortedBy.author) {
+                    sortedBooks = books.filter(function (item, index, array) {
+                        return item.author === sortedBy.author;
+                    });
+                }
+
+                return sortedBooks;
+            }
+
+            function listCategories() {
+                return categories.sort(function (x, y) {
+                    return x.ID - y.ID;
+                });
+            }
+
+            return {
+                books: {
+                    list: listBooks,
+                    add: addBook,
+                },
+                categories: {
+                    list: listCategories
+                },
+            };
+        }());
+
+        console.log(library.books.list());
+        console.log(library.categories.list());
+
+        var book1 = {
+            title: 'BOOK #',
+            author: 'John Doe',
+            isbn: '0123456789',
+            category: 'Book Category',
+        };
+
+        book1 = library.books.add(book1);
+
+        console.log(book1);
+        console.log(library.books.list());
+        var book2 = {
+            title: 'book2',
+            author: 'author2',
+            isbn: '0123456789123',
+            category: 'Book Category',
+        };
+        console.log(library.books.add(book2));
+        console.log(library.books.list());
+        var book3 = {
+            title: 'book3',
+            author: 'author1',
+            isbn: '0123456789124',
+            category: 'category2',
+        };
+        console.log(library.books.add(book3));
+        console.log(library.books.list());
+        console.log(library.categories.list());
+
+        console.log('category1');
+        var categoryObj = {
+            category: 'category1'
+        };
+        console.log(library.books.list(categoryObj));
+
+        console.log('category2');
+        categoryObj = {
+            category: 'category2'
+        };
+        console.log(library.books.list(categoryObj));
+
+        console.log('category3');
+        categoryObj = {
+            category: 'category3'
+        };
+        console.log(library.books.list(categoryObj));
+
+        console.log('author');
+        var authorObj = {
+            author: 'author1'
+        };
+        console.log(library.books.list(authorObj));
+    </script>
+</body>
+</html>

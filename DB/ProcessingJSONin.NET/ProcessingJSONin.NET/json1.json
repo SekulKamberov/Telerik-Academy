@@ -1,0 +1,30 @@
+﻿[
+    {
+        "Name": {
+            "FirstName": "Pesho",
+            "LastName": "Peshov"
+        },
+        "Age": "21"
+    },
+    {
+        "Name": {
+            "FirstName": "Pesho2",
+            "LastName": "Peshov2"
+        },
+        "Age": "22",
+        "Parent": {
+            "Name": {
+                "FirstName": "Pesho3",
+                "LastName": "Peshov3"
+            },
+            "Age": "23",
+            "Parent": {
+                "Name": {
+                    "FirstName": "Pesho4",
+                    "LastName": "Peshov4"
+                },
+                "Age": "24"
+            }
+        }
+    }
+]

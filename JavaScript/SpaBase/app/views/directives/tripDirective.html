@@ -1,0 +1,14 @@
+﻿<tr>
+    <td>
+        <a href="#/drivers/{{model.driverId}}">{{model.driverName}}</a>
+    </td>
+    <td>{{model.from}}</td>
+    <td>{{model.to}}</td>
+    <td>
+        <a href="#/trips/{{model.id}}">{{model.departureDate}}</a>
+    </td>
+    <td ng-show="isLoged">
+        <span ng-if="model.isMine">YES</span>
+        <span ng-if="!model.isMine">NO</span>
+    </td>
+</tr>

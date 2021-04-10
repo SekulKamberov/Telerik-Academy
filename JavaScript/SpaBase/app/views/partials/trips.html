@@ -1,0 +1,101 @@
+﻿<div ng-if="isLogedIn" ng-controller="TripsController">
+    <h1>
+        Trips
+    </h1>
+    <div ng-show="userInfo.isDriver">
+        <button><a href="#/trips/create">Create</a></button>
+    </div>
+    <br />
+    <br />
+    <div>
+        <label for="tripsSortId">Sort</label>
+        <select id="tripsSortId" ng-model="orderBy">
+            <option value="driver">Driver</option>
+            <option value="date">Date</option>
+            <option value="seats">Seats</option>
+            <option value="from">From</option>
+            <option value="to">To</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label for="tripsOrderTypeId">Order</label>
+        <select id="tripsOrderTypeId" ng-model="orderType">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label for="from">From</label>
+        <select name="from" id="from" ng-model="from">
+            <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+        </select>
+        <label for="to">To</label>
+        <select name="to" id="to" ng-model="to">
+            <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label for="isFinished">Include finished</label>
+        <input id="isFinished" type="checkbox" ng-model="isFinished" />
+    </div>
+    <br />
+    <div>
+        <label for="mineTrips">Only mine</label>
+        <input id="mineTrips" type="checkbox" ng-model="onlyMineTrips" />
+    </div>
+    <br />
+    <div>
+        Filtered pagging
+        <span>
+            <button ng-disabled="page <= 1" ng-click="getTripsFilteredPaged(page - 1, orderBy, orderType, from, to , isFinished, onlyMineTrips)">
+                <strong>Previous</strong>
+            </button>
+            <input type="number" min="1" ng-model="page" />
+            <button ng-click="getTripsFilteredPaged(page, orderBy, orderType, from, to , isFinished, onlyMineTrips)">
+                <strong>Page {{page}}</strong>
+            </button>
+            <button ng-click="getTripsFilteredPaged(page + 1, orderBy, orderType, from, to , isFinished, onlyMineTrips)">
+                <strong>Next</strong>
+            </button>
+        </span>
+        <br /><br />
+        <span>
+            Not filtered pagging (some filters apply on user site)
+            <button ng-disabled="page <= 1" ng-click="getTripsByPageOnly(page - 1)" title="Do not sent filter params, they apply on client side!">
+                <strong>Previous</strong>
+            </button>
+            <input type="number" min="1" ng-model="page" />
+            <button ng-click="getTripsByPageOnly(page)" title="Do not sent filter params, they apply on client side!">
+                <strong>Page {{page}}</strong>
+            </button>
+            <button ng-click="getTripsByPageOnly(page + 1)" title="Do not sent filter params, they apply on client side!">
+                <strong>Next</strong>
+            </button>
+        </span>
+    </div>
+    <br />
+    <br />
+    <table ng-show="filteredTrips.length">
+        <thead>
+            <tr>
+                <th>Driver</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure time</th>
+                <th ng-show="isLogedIn">Is Mine</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr trip-directive model="trip" is-loged="isLogedIn" ng-repeat="trip in filteredTrips = (trips | onlyMineTripsFilter:onlyMineTrips:userLabel | isTripFinishedFilter:isFinished)"></tr>
+        </tbody>
+    </table>
+    <div ng-if="!filteredTrips.length">
+        <h2>No Results!</h2>
+    </div>
+</div>
+<div ng-if="!isLogedIn">
+    <div ng-include="tripsPublic"></div>
+</div>

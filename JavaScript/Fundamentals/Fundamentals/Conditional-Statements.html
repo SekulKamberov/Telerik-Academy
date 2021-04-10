@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Conditional-Statements</h1>
+    <h2>Problem 1. Exchange if greater</h2>
+    <ul>
+        <li>
+            Write an if statement that takes two double variables a and b and exchanges their values if the first one is greater than the second.
+        </li>
+        <li>
+            As a result print the values a and b, separated by a space.
+        </li>
+    </ul>
+    <h2>Problem 2. Multiplication Sign</h2>
+    <ul>
+        <li>Write a script that shows the sign (+, - or 0) of the product of three real numbers, without calculating it.</li>
+        <li>Use a sequence of if operators.</li>
+    </ul>
+    <h2>Problem 3. The biggest of Three</h2>
+    <ul>
+        <li>Write a script that finds the biggest of three numbers.</li>
+    </ul>
+    <h2>Problem 4. Sort 3 numbers</h2>
+    <ul>
+        <li>Sort 3 real values in descending order.</li>
+    </ul>
+    <h2>Problem 5. Digit as word</h2>
+    <ul>
+        <li>Write a script that asks for a digit (0-9), and depending on the input, shows the digit as a word (in English).</li>
+        <li>Print “not a digit” in case of invalid input.</li>
+        <li>Use a switch statement.</li>
+    </ul>
+    <h2>Problem 6. Quadratic equation</h2>
+    <ul>
+        <li>Write a script that reads the coefficients a, b and c of a quadratic equation ax2 + bx + c = 0 and solves it (prints its real roots).</li>
+        <li>Calculates and prints its real roots.</li>
+    </ul>
+    <h2>Problem 7. The biggest of five numbers</h2>
+    <ul>
+        <li>Write a script that finds the greatest of given 5 variables.</li>
+    </ul>
+    <h2>Problem 8. Number as words</h2>
+    <ul>
+        <li>Write a script that converts a number in the range [0…999] to words, corresponding to its English pronunciation.</li>
+    </ul>
+    <script>
+        console.log('==========1==========');
+        var smaller = 45;
+        var bigger = 23;
+        console.log('Smaller: ' + smaller);
+        console.log('Bigger: ' + bigger);
+        console.log('Checking...');
+        if (smaller > bigger) {
+            var temp = smaller;
+            smaller = bigger;
+            bigger = temp;
+        }
+        console.log('Smaller:' + smaller);
+        console.log('Bigger: ' + bigger);
+        console.log('==========2==========');
+        var firstNumber = -7;
+        var secondNumber = 6;
+        var thirdNumber = 3;
+        var sign;
+        if (firstNumber < 0 && secondNumber < 0 && thirdNumber < 0) {
+            sign = '-';
+        } else if ((firstNumber < 0 && secondNumber < 0)
+                        || (firstNumber < 0 && thirdNumber < 0)
+                            || (secondNumber < 0 && thirdNumber < 0)) {
+            sign = '+';
+        } else if (firstNumber < 0 || secondNumber < 0 || thirdNumber < 0) {
+            sign = '-';
+        } else {
+            sign = '+';
+        }
+        console.log('Product of ' + firstNumber + '*' + secondNumber + '*' + thirdNumber + ' is: ' + sign);
+        console.log('==========3==========');
+        var biggest = firstNumber;
+        if (biggest < secondNumber) {
+            biggest = secondNumber;
+            if (biggest < thirdNumber) {
+                biggest = thirdNumber;
+            }
+        } else if (bigger < thirdNumber) {
+            biggest = thirdNumber;
+        }
+        console.log('The biggest of ' + firstNumber + ', ' + secondNumber + ', ' + thirdNumber + ' is: ' + biggest);
+        console.log('==========4==========');
+
+        if (firstNumber < secondNumber) {
+            var temp = firstNumber;
+            firstNumber = secondNumber;
+            secondNumber = temp;
+            if (secondNumber < thirdNumber) {
+                var temp = secondNumber;
+                secondNumber = thirdNumber;
+                thirdNumber = temp;
+            }
+            if (firstNumber < secondNumber) {
+                var temp = firstNumber;
+                firstNumber = secondNumber;
+                secondNumber = temp;
+            }
+        } else if (firstNumber < thirdNumber) {
+            var temp = firstNumber;
+            firstNumber = thirdNumber;
+            thirdNumber = temp;
+
+            temp = thirdNumber;
+            thirdNumber = secondNumber;
+            secondNumber = temp;
+        } else if (secondNumber < thirdNumber) {
+            var temp = secondNumber;
+            secondNumber = thirdNumber;
+            thirdNumber = temp;
+        }
+        console.log(firstNumber + ', ' + secondNumber + ', ' + thirdNumber);
+        console.log('==========5==========');
+        var input = '6';
+        input = +input;
+        switch (input) {
+            case (isNaN):
+                console.log('Not a digit!');
+            case (0):
+                console.log('Zero'); break;
+            case (1):
+                console.log('One'); break;
+            case (2):
+                console.log('Two'); break;
+            case (3):
+                console.log('Three'); break;
+            case (4):
+                console.log('Four'); break;
+            case (5):
+                console.log('Five'); break;
+            case (6):
+                console.log('Six'); break;
+            case (7):
+                console.log('Seven'); break;
+            case (8):
+                console.log('Eigth'); break;
+            case (9):
+                console.log('Nine'); break;
+            default:
+                console.log('Not a digit!');
+        }
+
+        console.log('==========6==========');
+
+        console.log('Task: Find the roots of a*x2 + b*x + c = 0\n');
+        var value1 = 1;
+        var value2 = 0;
+        var value3 = -1;
+        console.log(value1 + 'x2 + ' + value2 +'x + ' + value3 + ' = 0');
+
+        if (value1 === 0)
+        {
+            console.log("x = " + (-value3 / value2));
+        }
+        else
+        {
+            var discriminant = value2 * value2 - 4 * value1 * value3;
+                            
+            if (discriminant < 0)
+            {
+                console.log("The quadratic equation has no real roots!!!");
+            }
+            else if (discriminant === 0)
+            {
+                console.log("There is exactly one real root x = " + (-value2 / (2 * value1)));
+            }
+            else
+            {
+                console.log('x1 = ' + (-value2 + Math.sqrt(discriminant)) / (2 * value1) + ', x2 = ' + (-value2 - Math.sqrt(discriminant)) / (2 * value1));
+            }
+        }
+
+        console.log('==========7==========');
+
+        var firstNumber = 3;
+        var secondNumber = 1;
+        var thirdNumber = 2;
+        var fourthNumber = 4;
+        var fifthNumber = 0;
+        var MAX = firstNumber;
+
+        if (firstNumber > MAX) {
+            MAX = firstNumber;
+        } else if (secondNumber > MAX) {
+            MAX = secondNumber;
+        } else if (thirdNumber > MAX) {
+            MAX = thirdNumber;
+        } else if (fourthNumber > MAX) {
+            MAX = fourthNumber;
+        } else if (fifthNumber > MAX) {
+            MAX = fifthNumber;
+        }
+        console.log(firstNumber + ', ' + secondNumber + ', ' + thirdNumber + ', ' + fourthNumber + ', ' + fifthNumber + ', ');
+        console.log('Max = ' + MAX);
+
+        console.log('==========8==========');
+        var arr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred"];
+        
+        var number = 929;
+        console.log(number);
+        var result = '';
+
+        if (number >= 0 && number < 1000) {
+            var hundreds = (number / 100) | 0;
+            var secondNumber = ((number % 100) / 10) | 0;
+            var tens = number % 100; // 0..99
+            var thirdNumber = tens % 10;
+
+            if (hundreds != 0) { // [100, 999]
+                //console.log(arr[hundreds] + " " + arr[arr.length - 1]); // 100, 200...900
+                result += arr[hundreds] + " " + arr[arr.length - 1];
+                if (tens != 0) {
+                    if (tens < 10) {
+                        //console.log(' and ' + arr[tens]);
+                        result += ' and ' + arr[tens];
+                    } else {
+                        if (tens >= 20) {
+                            //console.log(' ' + arr[18 + secondNumber]);  // 20 30 40 .... 90
+                            result += ' ' + arr[18 + secondNumber];
+                            if (thirdNumber != 0) { // 21..29 31..39 ...
+                                //console.log(' ' + arr[thirdNumber]); // 1 2 3 4 .... 9
+                                result += ' ' + arr[thirdNumber];
+                            }
+                        } else {
+                            //console.log(' and ' + arr[tens]); // 1 2 3 4 ...... 19
+                            result += ' and ' + arr[tens];
+                        }
+                    }
+                }
+            } else if (tens < 10) { // 1..9
+                //console.log(arr[thirdNumber]);
+                result += arr[thirdNumber];
+            } else {
+                if (tens > 20) { // 21..29 31..39 ..
+                    //console.log(arr[18 + secondNumber]);  // 20..30....90
+                    result += arr[18 + secondNumber];
+                    if (thirdNumber != 0) { // 1..9
+                        //console.log(' ' + arr[thirdNumber]);
+                        result += ' ' + arr[thirdNumber];
+                    }
+                } else {
+                    //console.log(arr[tens]);
+                    result += arr[tens];
+                }
+            }
+        } else { 
+            //console.log('0 < x > 999 or not a integer!!!');
+            result = '0 < x > 999 or not a integer!!!';
+        }
+
+        console.log(result);
+    </script>
+</body>
+</html>
